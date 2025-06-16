@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "FMBolyarPro-700";
+  src: url("/src/assets/app/FMBolyarPro-700.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NeueKabelW01-Book";
+  src: url("/src/assets/app/NeueKabelW01-Book.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --color-player-yellow: rgb(239, 203, 27);
+  --color-player-red: rgb(223, 60, 45);
+  --color-player-blue: rgb(8, 149, 167);
+  --color-player-white: rgb(219, 218, 216);
+  --color-free: rgb(161, 152, 135);
+
+  --color-empire: rgb(127, 72, 113);
+  --color-outlaw: rgb(100, 45, 38);
+  --color-commonwealth: rgb(174, 146, 69);
+  --color-commonwealthmember: rgb(158, 125, 47);
+  --color-lord: rgb(221, 136, 108);
+  --color-judge: rgb(57, 89, 87);
+
+  --color-gold: rgb(217, 135, 35);
+  --color-silver: rgb(79, 132, 144);
+}
+
+.font-header {
+  font-family: "FMBolyarPro-700", sans-serif !important;
+}
+.font-body {
+  font-family: "NeueKabelW01-Book", sans-serif !important;
+}

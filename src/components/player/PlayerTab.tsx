@@ -1,0 +1,65 @@
+import { Color } from "../enums/Colors";
+import { Fates } from "../enums/Fates";
+import type { PlayerData } from "../enums/GameData";
+import PlayerSmallDisplay from "./playerDisplayComponents/PlayerSmallDisplay";
+
+interface PlayerTabProps {
+    data: PlayerData
+}
+
+export default function PlayerTab({ data }: PlayerTabProps) {
+
+    return (<div className="flex flex-col h-full justify-center">
+        {data.name.map((_, index) => <PlayerSmallDisplay
+            key={data.name[index]}
+            playerName={data.name[index]}
+            fate={getFateFromString(data.fate[index])}
+            color={getColorFromString(data.color[index])}
+            objectiveScore={data.objectiveProgress[index]}
+            cities={data.supply.cities[index]}
+            power={data.power[index]}
+            resources={data.resources[index]}
+            courtCards={data.courtCards[index]}
+            titles={data.titles[index]}
+            />)}
+    </div>);
+}
+
+function getColorFromString(colorStr: string): Color {
+    const normalizedColor = colorStr.toLowerCase();
+    switch (normalizedColor) {
+        case 'red': return Color.Red;
+        case 'blue': return Color.Blue;
+        case 'yellow': return Color.Yellow;
+        case 'white': return Color.White;
+        case 'purple': return Color.Purple;
+        default: 
+            console.warn(`Unknown color: ${colorStr}, defaulting to Red`);
+            return Color.Red;
+    }
+};
+
+function getFateFromString(fateStr: string): Fates {
+    const normalizedInput = fateStr.toLowerCase().replace(/\s+/g, '');
+    
+    // Try to find a matching enum value
+    const matchingFate = Object.values(Fates).find(fate => 
+        fate.toLowerCase() === normalizedInput
+    );
+    
+    if (matchingFate) {
+        return matchingFate;
+    }
+
+    // Fallback: try to match enum keys (for cases like "PlanetBreaker" vs "planetbreaker")
+    const enumKey = Object.keys(Fates).find(key => 
+        key.toLowerCase() === normalizedInput
+    );
+    
+    if (enumKey) {
+        return Fates[enumKey as keyof typeof Fates];
+    }
+
+    console.warn(`Unknown fate: ${fateStr}, defaulting to Steward`);
+    return Fates.Steward;
+}

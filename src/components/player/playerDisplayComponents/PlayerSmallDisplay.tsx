@@ -1,0 +1,108 @@
+import BackgroundImage from "../../generic/BackgroundImage";
+import ObjectiveIcon from "../../icons/ObjectiveIcon";
+import PlayerHoverIcon from "./PlayerHoverIcon";
+import VPIcon from "../../icons/VPIcon";
+import PlayerBoardDisplay from "../playerBoard/PlayerBoardDisplay";
+import { FATES_IMAGES } from "@assets/campaign/fates";
+import { GAME_IMAGES } from "@assets/game";
+import { APP_IMAGES } from "@/assets/app";
+import PlayerTitleChip from "./PlayerTitleChip";
+import HoverGrid from "../../generic/HoverGrid";
+import { COURT_IMAGES } from "@/assets/campaign/court";
+import type { Fates } from "@/components/enums/Fates";
+// import FlagshipBoardDisplay from "../playerBoard/FlagshipBoardDisplay";
+import type { Color } from "@/components/enums/Colors";
+import type { RESOURCES } from "@/components/enums/Resources";
+// import ImageAboveText from "../ImageAboveText";
+
+interface PlayerSmallDisplayProps {
+    playerName: string,
+    fate: Fates,
+    color: Color,
+    resources: RESOURCES[],
+    cities: number,
+    objectiveScore: number,
+    power: number,
+    courtCards: string[],
+    titles?: string[],
+}
+
+export default function PlayerSmallDisplay({ playerName, fate, color, resources, cities, objectiveScore, power, courtCards, titles = [] }: PlayerSmallDisplayProps) {
+
+    const bgColor = getColor(color);
+    const textColor = getTextColor(color);
+
+    const courtCardsParsed = courtCards.map(card => COURT_IMAGES[card as keyof typeof COURT_IMAGES]);
+
+    return (<div className={`flex flex-col justify-center w-61`}>
+        <BackgroundImage
+        imageSrc={APP_IMAGES.background}
+        imageClassName="object-cover">
+            <div className={`flex flex-row h-42 justify-between font-header top-0`}>
+                <div className="w-30">
+                    <BackgroundImage
+                        imageSrc={FATES_IMAGES[fate]}
+                        imageClassName="object-cover object-top "
+                        className="overflow-y-hidden h-full">
+                        <div className="flex flex-col items-center h-full justify-end pb-2">
+                            <div className={`text-xs rounded h-auto flex flex-col items-center justify-center w-auto p-1 ${bgColor}`}>
+                                {playerName}
+                            </div>
+                            <div className={`text-xs rounded h-auto flex flex-col items-center justify-center w-auto mx-1 text-white `}>
+                                {fate}
+                            </div>
+                        </div>
+                    </BackgroundImage>
+                </div>
+                <div className={` ${textColor} flex flex-col justify-evenly content-center w-15`}>
+                    <ObjectiveIcon objectiveScore={objectiveScore} />
+                    <VPIcon power={power} />
+                </div>
+                <div className="flex flex-col justify-around m-1">
+                    <PlayerHoverIcon imageSrc={GAME_IMAGES["material"]} text="Board">
+                        <PlayerBoardDisplay resources={resources} cities={cities} color={color} />
+                    </PlayerHoverIcon>
+                    {/* <PlayerHoverIcon imageSrc={"/src/assets/campaign/flagship.png"} text="Cards">
+                        <FlagshipBoardDisplay color={color} />
+                    </PlayerHoverIcon> */}
+                    <PlayerHoverIcon imageSrc={GAME_IMAGES["cardBack"]} text="Cards">
+                        <HoverGrid cards={courtCardsParsed} />
+                    </PlayerHoverIcon>
+                </div>
+            </div>
+        </BackgroundImage>
+        <div className="flex gap-1 pl-1 py-1 w-full text-center">
+            {titles.map(title => <PlayerTitleChip key={title} title={title} />)}
+        </div>
+    </div>);
+}
+
+function getTextColor(color: string) {
+    switch (color) {
+        case "yellow":
+            return "text-player-yellow"
+        case "red":
+            return "text-player-red"
+        case "blue":
+            return "text-player-blue"
+        case "white":
+            return "text-player-white"
+        default:
+            return "text-white"
+    }
+}
+
+function getColor(color: string) {
+    switch (color) {
+        case "yellow":
+            return "bg-player-yellow"
+        case "red":
+            return "bg-player-red"
+        case "blue":
+            return "bg-player-blue"
+        case "white":
+            return "bg-player-white"
+        default:
+            return "bg-white"
+    }
+}
