@@ -1,17 +1,16 @@
 import { useState } from "react";
 import CenterDisplay from "../../generic/CenterDisplay";
 import HoverGrid from "@/components/generic/HoverGrid";
-import { CAMPAIGN_IMAGES } from "@/assets/campaign";
-import type { CourtCard } from "@/components/enums/GameData";
+import { COURT_IMAGES } from "@/assets/campaign/court";
 
 interface EdictsProps {
-    cards: CourtCard[]
+    cards: string[]
 }
 
 export default function Edicts({ cards }: EdictsProps) {
     const [hover, setHover] = useState(false);
 
-    const edictCardsParsed = cards.map(card => CAMPAIGN_IMAGES[card.id as keyof typeof CAMPAIGN_IMAGES]);
+    const edictCardsParsed = cards.map(card => COURT_IMAGES[card as keyof typeof COURT_IMAGES]);
 
     return (<div
         onMouseEnter={() => setHover(true)}

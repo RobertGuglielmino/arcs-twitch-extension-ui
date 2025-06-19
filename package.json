@@ -1,5 +1,5 @@
 {
-  "name": "ti4-twitch-extension-ui",
+  "name": "arcs-twitch-extension-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -15,6 +15,7 @@
     "preview:config": "npm run build && vite preview --open /config.html"
   },
   "dependencies": {
+    "@robertguglielmino/arcs-types": "^1.0.2",
     "@tailwindcss/vite": "^4.1.8",
     "lucide-react": "^0.503.0",
     "pako": "^2.1.0",

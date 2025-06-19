@@ -66,8 +66,9 @@ export const PositionedImages: React.FC<PositionedImagesProps> = ({
         />
       ))}
 
-        {overlayItems && overlayItems.map((item) => (
-          <div
+        {overlayItems && overlayItems.map((item) => {
+          if (!item) return;
+          return <div
             key={item.id}
             className={`absolute transform -translate-x-1/2 -translate-y-1/2 ${item.className || ''}`}
             style={{
@@ -77,7 +78,7 @@ export const PositionedImages: React.FC<PositionedImagesProps> = ({
           >
             {item.component}
           </div>
-        ))}
+        })}
     </div>
   );
 };

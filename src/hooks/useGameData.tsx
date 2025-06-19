@@ -1,9 +1,10 @@
 import { Fates } from "@/components/enums/Fates";
-import type { GameData } from "@/components/enums/GameData";
+import type { GameData } from "@robertguglielmino/arcs-types";
 import { RESOURCES } from "@/components/enums/Resources";
 import { TITLES } from "@/components/enums/Titles";
 import pako from "pako";
 import { useEffect, useState } from "react";
+import { Color } from "@/components/enums/Colors";
 
 
 const mockData: GameData = {
@@ -11,8 +12,8 @@ const mockData: GameData = {
         name: ["ROB", "MATT", "HUNTER", "DARRELL"],
         fate: [Fates.Steward, Fates.Admiral, Fates.Pathfinder, Fates.Conspirator],
         color: ["white", "blue", "red", "yellow"],
-        power: [1, 2, 3, 4],
-        objectiveProgress: [1, 2, 3, 4],
+        power: [11, 2, 3, 411],
+        objectiveProgress: [1, 21, 3, 4],
         resources: [
             [RESOURCES.Fuel, RESOURCES.Empty, RESOURCES.Fuel, RESOURCES.Empty, RESOURCES.Fuel, RESOURCES.Empty],
             [RESOURCES.Relic, RESOURCES.Material, RESOURCES.Weapons, RESOURCES.Empty, RESOURCES.Empty, RESOURCES.Empty],
@@ -20,7 +21,7 @@ const mockData: GameData = {
             [RESOURCES.Empty, RESOURCES.Relic, RESOURCES.Fuel, RESOURCES.Empty, RESOURCES.Relic, RESOURCES.Material],
         ],
         supply: { agents: [3, 3, 3, 3], ships: [4, 4, 4, 4], cities: [2, 4, 2, 2], starports: [5, 5, 5, 5], favors: [] },
-        outrage: [[false,false,false,false,false], [false,false,false,false,false], [false,false,false,false,false], [false,false,false,false,false], [false,false,false,false,false]],
+        outrage: [[true, false, false, true, false], [false, true, true, true, false], [true, false, true, false, true], [false, false, false, false, true], [false, false, false, false, false]],
         courtCards: [
             ["f01_02", "f01_03", "f01_05", "f01_06", "f01_07"],
             ["f05_02", "f05_03", "f05_04"],
@@ -34,6 +35,12 @@ const mockData: GameData = {
             keeper: [0, 0, 0, 0, 0],
             empath: [0, 0, 0, 0, 0],
         },
+        flagship: [
+            ["city", "starport", "starport", "city", "city", "starport", "starport", "city", "city", "starport", "starport", "city"],
+            ["city", "starport", "starport", "city", "city", "starport", "starport", "city", "city", "starport", "starport", "city"],
+            ["city", "starport", "starport", "city", "city", "starport", "starport", "city", "city", "starport", "starport", "city"],
+            ["city", "starport", "starport", "city", "city", "starport", "starport", "city", "city", "starport", "starport", "city"]
+        ],
         titles: [
             [TITLES.FirstRegent, TITLES.LordCluster1],
             [TITLES.FirstRegent, TITLES.CommonwealthMember, TITLES.JudgesChosen],
@@ -44,8 +51,13 @@ const mockData: GameData = {
     gameData: {
         isCampaign: true,
         ambitionDeclarations: [],
-        courtCards: [{id: "f01_05", agents: [1, 0, 0 ,0]}],
-        // edicts: [],
+        courtCards: [
+            { id: "f01_05", agents: [{ color: Color.Red, value: 4 }] },
+            { id: "f01_06", agents: [{ color: Color.Yellow, value: 3 }] },
+            { id: "f01_07", agents: [{ color: Color.Blue, value: 2 }] },
+            { id: "f01_08", agents: [{ color: Color.White, value: 1 }] }
+        ],
+        edicts: [],
         laws: [""]
     }
 }
@@ -64,20 +76,22 @@ export const initialData: GameData = {
             [RESOURCES.Empty, RESOURCES.Empty, RESOURCES.Empty, RESOURCES.Empty, RESOURCES.Empty, RESOURCES.Empty],
         ],
         supply: { agents: [3, 3, 3, 3], ships: [4, 4, 4, 4], cities: [2, 2, 2, 2], starports: [5, 5, 5, 5], favors: [] },
-        outrage: [[false,false,false,false,false], [false,false,false,false,false], [false,false,false,false,false], [false,false,false,false,false], [false,false,false,false,false]],
+        outrage: [[false, false, false, false, false], [false, false, false, false, false], [false, false, false, false, false], [false, false, false, false, false], [false, false, false, false, false]],
         courtCards: [
             [],
             [],
             [],
             []
         ],
-        ambitionProgress: { 
+        ambitionProgress: {
             tycoon: [0, 0, 0, 0, 0],
             tyrant: [0, 0, 0, 0, 0],
             warlord: [0, 0, 0, 0, 0],
             keeper: [0, 0, 0, 0, 0],
             empath: [0, 0, 0, 0, 0]
         },
+        flagship: [
+        ],
         titles: [
             [],
             [],
@@ -87,8 +101,9 @@ export const initialData: GameData = {
     },
     gameData: {
         isCampaign: true,
-        ambitionDeclarations: [""],
+        ambitionDeclarations: [[""]],
         courtCards: [],
+        edicts: [],
         laws: [""]
     }
 }

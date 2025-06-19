@@ -1,7 +1,7 @@
-import { Color } from "../enums/Colors";
-import { Fates } from "../enums/Fates";
+import {  Fates } from "@robertguglielmino/arcs-types";
 import type { PlayerData } from "../enums/GameData";
-import PlayerSmallDisplay from "./playerDisplayComponents/PlayerCard";
+import PlayerCard from "./playerDisplayComponents/PlayerCard";
+import { Color } from "../enums/Colors";
 
 interface PlayerSidebarProps {
     data: PlayerData
@@ -10,7 +10,7 @@ interface PlayerSidebarProps {
 export default function PlayerSidebar({ data }: PlayerSidebarProps) {
 
     return (<div className="flex flex-col items-center justify-center h-1/3 fixed left-0 top-1/2 transform -translate-y-1/2">
-        {data.name.map((_, index) => <PlayerSmallDisplay
+        {data.name.map((_, index) => <PlayerCard
             key={data.name[index]}
             playerName={data.name[index]}
             fate={getFateFromString(data.fate[index])}
@@ -19,7 +19,11 @@ export default function PlayerSidebar({ data }: PlayerSidebarProps) {
             cities={data.supply.cities[index]}
             power={data.power[index]}
             resources={data.resources[index]}
+            outrage={data.outrage[index]}
             courtCards={data.courtCards[index]}
+            tyrant={data.ambitionProgress.tyrant[index]}
+            warlord={data.ambitionProgress.warlord[index]}
+            // flagships={data.flagships[index]}
             titles={data.titles[index]}
             />)}
     </div>);

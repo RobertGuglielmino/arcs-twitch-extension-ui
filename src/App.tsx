@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-import type { GameData } from './components/enums/GameData';
+import type { GameData } from '@robertguglielmino/arcs-types';
 import GameInfoTab from './components/gameInfo/GameInfoTab';
 import PlayerSidebar from './components/player/PlayerSidebar';
 import { useGameData } from './hooks/useGameData';

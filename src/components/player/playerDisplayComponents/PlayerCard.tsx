@@ -17,19 +17,22 @@ import FlagshipBoardDisplay from "../playerBoard/FlagshipBoardDisplay";
 import { getColor } from "@/utils/getColor";
 // import ImageAboveText from "../ImageAboveText";
 
-interface PlayerSmallDisplayProps {
+interface PlayerCardProps {
     playerName: string,
     fate: Fates,
     color: Color,
+    tyrant: number,
+    warlord: number,
     resources: RESOURCES[],
     cities: number,
+    outrage: boolean[],
     objectiveScore: number,
     power: number,
     courtCards: string[],
     titles?: string[],
 }
 
-export default function PlayerSmallDisplay({ playerName, fate, color, resources, cities, objectiveScore, power, courtCards, titles = [] }: PlayerSmallDisplayProps) {
+export default function PlayerCard({ playerName, fate, color, tyrant, warlord, resources, cities, outrage, objectiveScore, power, courtCards, titles = [] }: PlayerCardProps) {
 
     const bgColor = getColor(color);
     const textColor = getTextColor(color);
@@ -62,7 +65,7 @@ export default function PlayerSmallDisplay({ playerName, fate, color, resources,
                 </div>
                 <div className="flex flex-col shrink justify-around m-1">
                     <PlayerHoverIcon imageSrc={GAME_IMAGES["material"]} text="Board">
-                        <PlayerBoardDisplay resources={resources} cities={cities} color={color} />
+                        <PlayerBoardDisplay resources={resources} cities={cities} outrage={outrage} trophies={warlord} captives={tyrant} color={color} />
                     </PlayerHoverIcon>
                     <PlayerHoverIcon imageSrc={"/src/assets/campaign/flagship.png"} text="Cards">
                         <FlagshipBoardDisplay color={color} />

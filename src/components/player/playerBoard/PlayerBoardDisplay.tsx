@@ -9,10 +9,13 @@ import { getColor } from "@/utils/getColor";
 interface PlayerBoardDisplayProps {
   resources: RESOURCES[],
   cities: number,
+  outrage: boolean[],
+  trophies: number,
+  captives: number,
   color: Color
 }
 
-export default function PlayerBoardDisplay({ resources, cities, color }: PlayerBoardDisplayProps) {
+export default function PlayerBoardDisplay({ resources, cities, outrage, trophies, captives, color }: PlayerBoardDisplayProps) {
 
   const RESOURCE_CONFIG = {
     positions: [
@@ -74,9 +77,11 @@ export default function PlayerBoardDisplay({ resources, cities, color }: PlayerB
     }));
   }
 
-  // function generateOtherImages() {
-
-  // }
+  function generateOutrage(outrage: boolean[]): any[] {
+    return outrage.map((isOutraged, index) => {
+      if (!isOutraged) return overlayItems[index];
+    });
+  }
 
   // Main function to combine both image types
   function generateAllImages(): PositionedImage[] {
@@ -87,51 +92,67 @@ export default function PlayerBoardDisplay({ resources, cities, color }: PlayerB
     return [...fuelImages, ...cityImages];
   }
 
+  function generateValues(): any[] {
+    return [
+      {
+        id: 'trophies',
+        position: { x: 58, y: 68 },
+        component: <div className="text-white font-header bg-stone-900 rounded p-6 text-5xl flex text-center">{trophies}</div>
+      },
+      {
+        id: 'captives',
+        position: { x: 85, y: 68 },
+        component: <div className="text-white font-header bg-stone-900 rounded p-6 text-5xl flex text-center">{captives}</div>
+      }
+    ];
+  }
+
+  function generateAllComponents(): any[] {
+    const outrageComponents = generateOutrage(outrage);
+    const values = generateValues();
+
+    return [...outrageComponents, ...values];
+  }
+
   const bgColor = getColor(color);
 
   const overlayItems = [
-  {
-    id: 'outrage_material',
-    position: { x: 23.5, y: 48 }, 
-    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
-  },
-  {
-    id: 'outrage_fuel',
-    position: { x: 23.5, y: 58.5 }, 
-    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
-  },
-  {
-    id: 'outrage_weapons',
-    position: { x: 23.5, y: 69 }, 
-    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
-  },
-  {
-    id: 'outrage_relic',
-    position: { x: 23.5, y: 79.5 }, 
-    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
-  },
-  {
-    id: 'outrage_psionics',
-    position: { x: 23.5, y: 90 }, 
-    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
-  },
-  {
-    id: 'favors',
-    position: { x: 23.5, y: 90 }, 
-    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
-  },
-  {
-    id: 'trophies',
-    position: { x: 58, y: 68 }, 
-    component: <div className="text-white font-header bg-stone-900 rounded p-6 text-5xl flex text-center">4</div>
-  },
-  {
-    id: 'captives',
-    position: { x: 85, y: 68 },
-    component: <div className="text-white font-header bg-stone-900 rounded p-6 text-5xl flex text-center">5</div>
-  }
-];
-
+    {
+      id: 'outrage_material',
+      position: { x: 23.5, y: 48 },
+      component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+    },
+    {
+      id: 'outrage_fuel',
+      position: { x: 23.5, y: 58.5 },
+      component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+    },
+    {
+      id: 'outrage_weapons',
+      position: { x: 23.5, y: 69 },
+      component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+    },
+    {
+      id: 'outrage_relic',
+      position: { x: 23.5, y: 79.5 },
+      component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+    },
+    {
+      id: 'outrage_psionics',
+      position: { x: 23.5, y: 90 },
+      component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+    },
+    {
+      id: 'nothing',
+      position: { x: 0, y: 0 },
+      component: <></>
+    },
+    {
+      id: 'favors',
+      position: { x: 23.5, y: 90 },
+      component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+    },
+  ];
 
   const foregroundImages = generateAllImages();
 
@@ -139,10 +160,8 @@ export default function PlayerBoardDisplay({ resources, cities, color }: PlayerB
     backgroundImage={playerBoard}
     backgroundAlt="playerBoard"
     foregroundImages={foregroundImages}
-    overlayItems={overlayItems}></PositionedImages>);
+    overlayItems={generateAllComponents()}></PositionedImages>);
 }
-
-
 
 function getColorImages(color: Color) {
   switch (color) {
