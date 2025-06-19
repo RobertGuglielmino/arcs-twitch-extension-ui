@@ -13,12 +13,12 @@ export default function PlayerHoverIcon({ imageSrc, children }: PlayerHoverIconP
     const [hover, setHover] = useState(false);
 
     return (
-        <div className="w-10">
+        <div className="shrink max-w-10 max-h-full">
             <div
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
-                className="font-body size-full">
-                    <img src={imageSrc} className="overflow-y-hidden object-contain"/>
+                className="font-body aspect-square">
+                    <img src={imageSrc} className="w-full h-full object-contain"/>
                 {/* <BackgroundImage
                     imageSrc={imageSrc}
                     imageClassName="object-contain"

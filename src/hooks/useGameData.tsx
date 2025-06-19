@@ -35,7 +35,7 @@ const mockData: GameData = {
             empath: [0, 0, 0, 0, 0],
         },
         titles: [
-            [TITLES.FirstRegent, TITLES.CommonwealthMember, TITLES.JudgesChosen],
+            [TITLES.FirstRegent, TITLES.LordCluster1],
             [TITLES.FirstRegent, TITLES.CommonwealthMember, TITLES.JudgesChosen],
             [TITLES.FirstRegent, TITLES.CommonwealthMember, TITLES.JudgesChosen],
             [TITLES.FirstRegent, TITLES.CommonwealthMember, TITLES.JudgesChosen]
@@ -45,6 +45,7 @@ const mockData: GameData = {
         isCampaign: true,
         ambitionDeclarations: [],
         courtCards: [{id: "f01_05", agents: [1, 0, 0 ,0]}],
+        // edicts: [],
         laws: [""]
     }
 }

@@ -3,6 +3,7 @@ import { GAME_IMAGES } from "@/assets/game";
 import { PositionedImages, type PositionedImage } from "@/components/generic/PositionedImages";
 import { Color } from "@/components/enums/Colors";
 import type { RESOURCES } from "@/components/enums/Resources";
+import { getColor } from "@/utils/getColor";
 
 
 interface PlayerBoardDisplayProps {
@@ -86,13 +87,59 @@ export default function PlayerBoardDisplay({ resources, cities, color }: PlayerB
     return [...fuelImages, ...cityImages];
   }
 
+  const bgColor = getColor(color);
+
+  const overlayItems = [
+  {
+    id: 'outrage_material',
+    position: { x: 23.5, y: 48 }, 
+    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+  },
+  {
+    id: 'outrage_fuel',
+    position: { x: 23.5, y: 58.5 }, 
+    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+  },
+  {
+    id: 'outrage_weapons',
+    position: { x: 23.5, y: 69 }, 
+    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+  },
+  {
+    id: 'outrage_relic',
+    position: { x: 23.5, y: 79.5 }, 
+    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+  },
+  {
+    id: 'outrage_psionics',
+    position: { x: 23.5, y: 90 }, 
+    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+  },
+  {
+    id: 'favors',
+    position: { x: 23.5, y: 90 }, 
+    component: <div className={`flex items-center ${bgColor} justify-center text-xs rounded w-6 h-4 m-1`}> </div>
+  },
+  {
+    id: 'trophies',
+    position: { x: 58, y: 68 }, 
+    component: <div className="text-white font-header bg-stone-900 rounded p-6 text-5xl flex text-center">4</div>
+  },
+  {
+    id: 'captives',
+    position: { x: 85, y: 68 },
+    component: <div className="text-white font-header bg-stone-900 rounded p-6 text-5xl flex text-center">5</div>
+  }
+];
+
 
   const foregroundImages = generateAllImages();
 
   return (<PositionedImages
     backgroundImage={playerBoard}
     backgroundAlt="playerBoard"
-    foregroundImages={foregroundImages}></PositionedImages>);
+    foregroundImages={foregroundImages}
+    overlayItems={overlayItems}></PositionedImages>);
 }
 
 

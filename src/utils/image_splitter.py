@@ -113,7 +113,7 @@ def main():
     Main function - processes all JPG files in ../assets/fates/ directory.
     """
     
-    input_pattern = "../assets/base/*.jpg"
+    input_pattern = "../assets/base/*.png"
     output_base_dir = "split_images"
     
     print("Batch Grid Image Splitter")

@@ -15,8 +15,6 @@ interface BoardTokenGridProps {
 
 export default function BoardTokenGrid({ resources, cities, trophies, captives, outrage, favors }: BoardTokenGridProps) {
 
-    // cities are 1 1 2 1 1 
-
     // this doesn't do any validation for the resource table - but i assume this will happen somewhere else. otherwise it is a pain. thank you.
     return (<div className="flex flex-col">
         <div className="grid grid-cols-4">

@@ -1,15 +1,15 @@
 import { Color } from "../enums/Colors";
 import { Fates } from "../enums/Fates";
 import type { PlayerData } from "../enums/GameData";
-import PlayerSmallDisplay from "./playerDisplayComponents/PlayerSmallDisplay";
+import PlayerSmallDisplay from "./playerDisplayComponents/PlayerCard";
 
-interface PlayerTabProps {
+interface PlayerSidebarProps {
     data: PlayerData
 }
 
-export default function PlayerTab({ data }: PlayerTabProps) {
+export default function PlayerSidebar({ data }: PlayerSidebarProps) {
 
-    return (<div className="flex flex-col h-full justify-center">
+    return (<div className="flex flex-col items-center justify-center h-1/3 fixed left-0 top-1/2 transform -translate-y-1/2">
         {data.name.map((_, index) => <PlayerSmallDisplay
             key={data.name[index]}
             playerName={data.name[index]}

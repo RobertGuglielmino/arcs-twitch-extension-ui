@@ -7,7 +7,7 @@ interface PlayerTitleChipProps {
 
 export default function PlayerTitleChip({ title }: PlayerTitleChipProps) {
 
-    return (<div className={`${getBGColor(title)} border-2 rounded border-amber-400 text-white text-xs font-body p-1 line-clamp-2`}> 
+    return (<div className={`${getBGColor(title)} border-2 rounded border-amber-400 text-white text-[10px] font-body p-1 line-clamp-1`}> 
         {title}
     </div>);
 }

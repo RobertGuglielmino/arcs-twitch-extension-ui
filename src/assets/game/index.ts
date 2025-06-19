@@ -43,38 +43,47 @@ import thirdGold from './ambition-markers/thirdGold.webp';
 import thirdSilver from './ambition-markers/thirdSilver.webp';
 
 // Action images
-import cardBack from './cardBack.png';
-import action_00_00 from './action/action_00_00.webp';
-import action_00_01 from './action/action_00_01.webp';
-import action_00_02 from './action/action_00_02.webp';
-import action_00_03 from './action/action_00_03.webp';
-import action_00_04 from './action/action_00_04.webp';
-import action_00_05 from './action/action_00_05.webp';
-import action_00_06 from './action/action_00_06.webp';
-import action_01_00 from './action/action_01_00.webp';
-import action_01_01 from './action/action_01_01.webp';
-import action_01_02 from './action/action_01_02.webp';
-import action_01_03 from './action/action_01_03.webp';
-import action_01_04 from './action/action_01_04.webp';
-import action_01_05 from './action/action_01_05.webp';
-import action_01_06 from './action/action_01_06.webp';
-import action_02_00 from './action/action_02_00.webp';
-import action_02_01 from './action/action_02_01.webp';
-import action_02_02 from './action/action_02_02.webp';
-import action_02_03 from './action/action_02_03.webp';
-import action_02_04 from './action/action_02_04.webp';
-import action_02_05 from './action/action_02_05.webp';
-import action_02_06 from './action/action_02_06.webp';
-import action_03_00 from './action/action_03_00.webp';
-import action_03_01 from './action/action_03_01.webp';
-import action_03_02 from './action/action_03_02.webp';
-import action_03_03 from './action/action_03_03.webp';
-import action_03_04 from './action/action_03_04.webp';
-import action_03_05 from './action/action_03_05.webp';
-import action_03_06 from './action/action_03_06.webp';
-import action_04_00 from './action/action_04_00.webp';
-import action_04_01 from './action/action_04_01.webp';
-import action_04_02 from './action/action_04_02.webp';
+
+import cardBack from './cardBack.webp';
+import cardBackSideways from './cardBackSideways.webp';
+import admin_01 from './action/admin_01.webp';
+import admin_02 from './action/admin_02.webp';
+import admin_03 from './action/admin_03.webp';
+import admin_04 from './action/admin_04.webp';
+import admin_05 from './action/admin_05.webp';
+import admin_06 from './action/admin_06.webp';
+import admin_07 from './action/admin_07.webp';
+import aggro_01 from './action/aggro_01.webp';
+import aggro_02 from './action/aggro_02.webp';
+import aggro_03 from './action/aggro_03.webp';
+import aggro_04 from './action/aggro_04.webp';
+import aggro_05 from './action/aggro_05.webp';
+import aggro_06 from './action/aggro_06.webp';
+import aggro_07 from './action/aggro_07.webp';
+import const_01 from './action/const_01.webp';
+import const_02 from './action/const_02.webp';
+import const_03 from './action/const_03.webp';
+import const_04 from './action/const_04.webp';
+import const_05 from './action/const_05.webp';
+import const_06 from './action/const_06.webp';
+import const_07 from './action/const_07.webp';
+import mobil_01 from './action/mobil_01.webp';
+import mobil_02 from './action/mobil_02.webp';
+import mobil_03 from './action/mobil_03.webp';
+import mobil_04 from './action/mobil_04.webp';
+import mobil_05 from './action/mobil_05.webp';
+import mobil_06 from './action/mobil_06.webp';
+import mobil_07 from './action/mobil_07.webp';
+import event from './action/event.webp';
+import believer_01 from './action/believer_01.webp';
+import believer_02 from './action/believer_02.webp';
+import believer_03 from './action/believer_03.webp';
+import believer_04 from './action/believer_04.webp';
+import believer_05 from './action/believer_05.webp';
+import believer_06 from './action/believer_06.webp';
+import believer_07 from './action/believer_07.webp';
+import believer_08 from './action/believer_08.webp';
+import believer_09 from './action/believer_09.webp';
 
 export const GAME_IMAGES = {
   // Root level images
@@ -123,35 +132,43 @@ export const GAME_IMAGES = {
   
   // Action images
   cardBack,
-  action_00_00,
-  action_00_01,
-  action_00_02,
-  action_00_03,
-  action_00_04,
-  action_00_05,
-  action_00_06,
-  action_01_00,
-  action_01_01,
-  action_01_02,
-  action_01_03,
-  action_01_04,
-  action_01_05,
-  action_01_06,
-  action_02_00,
-  action_02_01,
-  action_02_02,
-  action_02_03,
-  action_02_04,
-  action_02_05,
-  action_02_06,
-  action_03_00,
-  action_03_01,
-  action_03_02,
-  action_03_03,
-  action_03_04,
-  action_03_05,
-  action_03_06,
-  action_04_00,
-  action_04_01,
-  action_04_02,
+  cardBackSideways,
+  admin_01,
+  admin_02,
+  admin_03,
+  admin_04,
+  admin_05,
+  admin_06,
+  admin_07,
+  aggro_01,
+  aggro_02,
+  aggro_03,
+  aggro_04,
+  aggro_05,
+  aggro_06,
+  aggro_07,
+  const_01,
+  const_02,
+  const_03,
+  const_04,
+  const_05,
+  const_06,
+  const_07,
+  mobil_01,
+  mobil_02,
+  mobil_03,
+  mobil_04,
+  mobil_05,
+  mobil_06,
+  mobil_07,
+  believer_01,
+  believer_02,
+  believer_03,
+  believer_04,
+  believer_05,
+  believer_06,
+  believer_07,
+  believer_08,
+  believer_09,
+  event
 } as const;

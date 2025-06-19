@@ -13,6 +13,8 @@ import type { Fates } from "@/components/enums/Fates";
 // import FlagshipBoardDisplay from "../playerBoard/FlagshipBoardDisplay";
 import type { Color } from "@/components/enums/Colors";
 import type { RESOURCES } from "@/components/enums/Resources";
+import FlagshipBoardDisplay from "../playerBoard/FlagshipBoardDisplay";
+import { getColor } from "@/utils/getColor";
 // import ImageAboveText from "../ImageAboveText";
 
 interface PlayerSmallDisplayProps {
@@ -34,12 +36,12 @@ export default function PlayerSmallDisplay({ playerName, fate, color, resources,
 
     const courtCardsParsed = courtCards.map(card => COURT_IMAGES[card as keyof typeof COURT_IMAGES]);
 
-    return (<div className={`flex flex-col justify-center w-61`}>
+    return (<div className={`flex flex-col justify-center w-full max-w-61`}>
         <BackgroundImage
         imageSrc={APP_IMAGES.background}
         imageClassName="object-cover">
-            <div className={`flex flex-row h-42 justify-between font-header top-0`}>
-                <div className="w-30">
+            <div className={`flex flex-row h-full justify-between font-header top-0 gap-1`}>
+                <div className="w-30 max-w-30">
                     <BackgroundImage
                         imageSrc={FATES_IMAGES[fate]}
                         imageClassName="object-cover object-top "
@@ -54,24 +56,24 @@ export default function PlayerSmallDisplay({ playerName, fate, color, resources,
                         </div>
                     </BackgroundImage>
                 </div>
-                <div className={` ${textColor} flex flex-col justify-evenly content-center w-15`}>
+                <div className={` ${textColor} flex flex-col flex-shrink flex-wrap justify-evenly content-center w-full max-w-15 `}>
                     <ObjectiveIcon objectiveScore={objectiveScore} />
                     <VPIcon power={power} />
                 </div>
-                <div className="flex flex-col justify-around m-1">
+                <div className="flex flex-col shrink justify-around m-1">
                     <PlayerHoverIcon imageSrc={GAME_IMAGES["material"]} text="Board">
                         <PlayerBoardDisplay resources={resources} cities={cities} color={color} />
                     </PlayerHoverIcon>
-                    {/* <PlayerHoverIcon imageSrc={"/src/assets/campaign/flagship.png"} text="Cards">
+                    <PlayerHoverIcon imageSrc={"/src/assets/campaign/flagship.png"} text="Cards">
                         <FlagshipBoardDisplay color={color} />
-                    </PlayerHoverIcon> */}
-                    <PlayerHoverIcon imageSrc={GAME_IMAGES["cardBack"]} text="Cards">
+                    </PlayerHoverIcon>
+                    <PlayerHoverIcon imageSrc={GAME_IMAGES["cardBackSideways"]} text="Cards">
                         <HoverGrid cards={courtCardsParsed} />
                     </PlayerHoverIcon>
                 </div>
             </div>
         </BackgroundImage>
-        <div className="flex gap-1 pl-1 py-1 w-full text-center">
+        <div className="flex flex-wrap gap-1 pl-1 py-1 w-full text-center">
             {titles.map(title => <PlayerTitleChip key={title} title={title} />)}
         </div>
     </div>);
@@ -89,20 +91,5 @@ function getTextColor(color: string) {
             return "text-player-white"
         default:
             return "text-white"
-    }
-}
-
-function getColor(color: string) {
-    switch (color) {
-        case "yellow":
-            return "bg-player-yellow"
-        case "red":
-            return "bg-player-red"
-        case "blue":
-            return "bg-player-blue"
-        case "white":
-            return "bg-player-white"
-        default:
-            return "bg-white"
     }
 }

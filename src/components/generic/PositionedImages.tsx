@@ -16,10 +16,23 @@ export interface PositionedImage {
   className?: string;
 }
 
+interface Position {
+  x: number; 
+  y: number; 
+}
+
+interface OverlayItem {
+  id: string;
+  position: Position;
+  component: React.ReactNode;
+  className?: string;
+}
+
 interface PositionedImagesProps {
   backgroundImage: any;
   backgroundAlt: string;
   foregroundImages: PositionedImage[];
+  overlayItems?: OverlayItem[];
   containerClassName?: string;
 }
 
@@ -27,6 +40,7 @@ export const PositionedImages: React.FC<PositionedImagesProps> = ({
   backgroundImage,
   backgroundAlt,
   foregroundImages,
+  overlayItems,
   containerClassName = ""
 }) => {
   return (
@@ -51,6 +65,19 @@ export const PositionedImages: React.FC<PositionedImagesProps> = ({
           }}
         />
       ))}
+
+        {overlayItems && overlayItems.map((item) => (
+          <div
+            key={item.id}
+            className={`absolute transform -translate-x-1/2 -translate-y-1/2 ${item.className || ''}`}
+            style={{
+              left: `${item.position.x}%`,
+              top: `${item.position.y}%`,
+            }}
+          >
+            {item.component}
+          </div>
+        ))}
     </div>
   );
 };
