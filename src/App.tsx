@@ -7,6 +7,15 @@ import { useGameData } from './hooks/useGameData';
 function App() {
   const data: GameData = useGameData();
 
+  /* 
+  
+      fate: Fates[];
+    courtCards: string[][];
+            courtCards: CourtCard[];
+            edicts: string[];
+            laws: string[];
+  */
+
   return (
     <>
       <div className="h-screen w-full">

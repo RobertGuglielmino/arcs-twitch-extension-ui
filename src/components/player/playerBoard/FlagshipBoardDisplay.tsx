@@ -1,15 +1,19 @@
 import flagshipBoard from "/src/assets/campaign/flagship-board.webp"
-import { GAME_IMAGES } from "@/assets/game";
 import { Color } from "@/components/enums/Colors";
 import { PositionedImages } from "@/components/generic/PositionedImages";
+import { useImageBus } from "@/hooks/useImageBus";
 import { useState } from "react";
 
 interface FlagshipBoardDisplayProps {
     color: Color
 }
 
+type FlagshipInput = ('city' | 'starport' | '')[];
+
 export default function FlagshipBoardDisplay({ color }: FlagshipBoardDisplayProps) {
     const [flagshipInput, _] = useState<FlagshipInput>(['city', 'starport', 'starport', 'city', 'city', 'starport', 'starport', 'city', 'city', 'starport', 'starport', 'city']);
+    
+    const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
 
     const FLAGSHIP_CONFIG = {
         positions: [
@@ -43,48 +47,44 @@ export default function FlagshipBoardDisplay({ color }: FlagshipBoardDisplayProp
                 };
             })
             .filter((item): item is any => item !== null);
-
+            
+    function getColorImages(color: Color) {
+        switch (color) {
+            case Color.Blue:
+                return {
+                    city: gameImages("city_blue"),
+                    starport: gameImages("starport_blue")
+                }
+            case Color.Red:
+                return {
+                    city: gameImages("city_red"),
+                    starport: gameImages("starport_red")
+                }
+            case Color.Yellow:
+                return {
+                    city: gameImages("city_yellow"),
+                    starport: gameImages("starport_yellow")
+                }
+            case Color.White:
+                return {
+                    city: gameImages("city_white"),
+                    starport: gameImages("starport_white")
+                }
+            default:
+                return {
+                    city: gameImages("city_free"),
+                    starport: gameImages("starport_free")
+                }
+        }
+    }
 
     return (<PositionedImages
         backgroundImage={flagshipBoard}
         backgroundAlt="playerBoard"
         foregroundImages={foregroundImages}></PositionedImages>);
 
-
-
 }
 
 
-type FlagshipInput = ('city' | 'starport' | '')[];
 
 
-
-function getColorImages(color: Color) {
-    switch (color) {
-        case Color.Blue:
-            return {
-                city: GAME_IMAGES.city_blue,
-                starport: GAME_IMAGES.starport_blue
-            }
-        case Color.Red:
-            return {
-                city: GAME_IMAGES.city_red,
-                starport: GAME_IMAGES.starport_red
-            }
-        case Color.Yellow:
-            return {
-                city: GAME_IMAGES.city_yellow,
-                starport: GAME_IMAGES.starport_yellow
-            }
-        case Color.White:
-            return {
-                city: GAME_IMAGES.city_white,
-                starport: GAME_IMAGES.starport_white
-            }
-        default:
-            return {
-                city: GAME_IMAGES.city_free,
-                starport: GAME_IMAGES.starport_free
-            }
-    }
-}

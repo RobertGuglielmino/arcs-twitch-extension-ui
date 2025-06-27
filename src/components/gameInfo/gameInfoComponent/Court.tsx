@@ -12,7 +12,6 @@ interface CourtProps {
 export default function Court({ cards }: CourtProps) {
     const [hover, setHover] = useState(false);
     
-
     return (<div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}

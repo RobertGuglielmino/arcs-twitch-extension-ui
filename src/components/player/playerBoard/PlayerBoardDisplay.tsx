@@ -1,9 +1,9 @@
 import playerBoard from "/src/assets/game/board.webp"
-import { GAME_IMAGES } from "@/assets/game";
 import { PositionedImages, type PositionedImage } from "@/components/generic/PositionedImages";
 import { Color } from "@/components/enums/Colors";
 import type { RESOURCES } from "@/components/enums/Resources";
 import { getColor } from "@/utils/getColor";
+import { useImageBus } from "@/hooks/useImageBus";
 
 
 interface PlayerBoardDisplayProps {
@@ -17,6 +17,8 @@ interface PlayerBoardDisplayProps {
 
 export default function PlayerBoardDisplay({ resources, cities, outrage, trophies, captives, color }: PlayerBoardDisplayProps) {
 
+    const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
+
   const RESOURCE_CONFIG = {
     positions: [
       { top: 25, left: 9.6 },
@@ -28,11 +30,11 @@ export default function PlayerBoardDisplay({ resources, cities, outrage, trophie
     ],
     size: { width: 11 },
     images: {
-      "material": GAME_IMAGES.material,
-      "fuel": GAME_IMAGES.fuel,
-      "weapons": GAME_IMAGES.weapons,
-      "relic": GAME_IMAGES.relic,
-      "psionics": GAME_IMAGES.psionics,
+      "material": gameImages("material"),
+      "fuel": gameImages("fuel"),
+      "weapons": gameImages("weapons"),
+      "relic": gameImages("relic"),
+      "psionics": gameImages("psionics"),
     }
   };
 
@@ -156,24 +158,25 @@ export default function PlayerBoardDisplay({ resources, cities, outrage, trophie
 
   const foregroundImages = generateAllImages();
 
+  
+  function getColorImages(color: Color) {
+    switch (color) {
+      case Color.Blue:
+        return gameImages("city_blue");
+      case Color.Red:
+        return gameImages("city_red");
+      case Color.Yellow:
+        return gameImages("city_yellow");
+      case Color.White:
+        return gameImages("city_white");
+      default:
+        return gameImages("city_free");
+    }
+  }
+
   return (<PositionedImages
     backgroundImage={playerBoard}
     backgroundAlt="playerBoard"
     foregroundImages={foregroundImages}
     overlayItems={generateAllComponents()}></PositionedImages>);
-}
-
-function getColorImages(color: Color) {
-  switch (color) {
-    case Color.Blue:
-      return GAME_IMAGES.city_blue;
-    case Color.Red:
-      return GAME_IMAGES.city_red;
-    case Color.Yellow:
-      return GAME_IMAGES.city_yellow;
-    case Color.White:
-      return GAME_IMAGES.city_white;
-    default:
-      return GAME_IMAGES.city_free;
-  }
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CenterDisplay from "../../generic/CenterDisplay";
 import HoverGrid from "@/components/generic/HoverGrid";
-import { COURT_IMAGES } from "@/assets/campaign/court";
+import { useImageBus } from "@/hooks/useImageBus";
 
 interface EdictsProps {
     cards: string[]
@@ -9,8 +9,11 @@ interface EdictsProps {
 
 export default function Edicts({ cards }: EdictsProps) {
     const [hover, setHover] = useState(false);
+    
+    const { getImageSrc: courtImages } = useImageBus("COURT_IMAGES");
 
-    const edictCardsParsed = cards.map(card => COURT_IMAGES[card as keyof typeof COURT_IMAGES]);
+    const edictCardsParsed = cards.map(card => courtImages(card));
+
 
     return (<div
         onMouseEnter={() => setHover(true)}

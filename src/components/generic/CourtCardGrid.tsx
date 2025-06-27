@@ -1,16 +1,19 @@
-import { APP_IMAGES } from "@/assets/app";
 import BackgroundImage from "./BackgroundImage";
 import { getColor } from "@/utils/getColor";
 import type { CourtCard } from "@robertguglielmino/arcs-types";
-import { COURT_IMAGES } from "@/assets/campaign/court";
+import { useImageBus } from "@/hooks/useImageBus";
 
 interface CourtCardGridProps {
     cards: CourtCard[];
 }
 
 function CourtCardGrid({ cards }: CourtCardGridProps) {
+    
+    const { getImageSrc: appImages } = useImageBus("APP_IMAGES");
+    const { getImageSrc: campaignImages } = useImageBus("CAMPAIGN_IMAGES");
+
     return (
-        <BackgroundImage className="m-2 max-h-full" imageClassName="rounded-sm object-cover" imageSrc={APP_IMAGES.background}>
+        <BackgroundImage className="m-2 max-h-full" imageClassName="rounded-sm object-cover" imageSrc={appImages("background")}>
             <div className="flex flex-wrap justify-center w-auto h-full gap-2 p-4 overflow-hidden">
                 {cards.length > 0 ? cards.map((card, i) => <div 
                     key={i}
@@ -28,7 +31,7 @@ function CourtCardGrid({ cards }: CourtCardGridProps) {
                     </div>
                     <img
                     key={i}
-                    src={COURT_IMAGES[card.id as keyof typeof COURT_IMAGES]}
+                    src={campaignImages(card.id)}
                     className="flex-shrink min-w-0 max-h-full object-contain" />
                     </div>) : <div  className="font-body text-2xl text-white">No cards here!</div>}
             </div>
