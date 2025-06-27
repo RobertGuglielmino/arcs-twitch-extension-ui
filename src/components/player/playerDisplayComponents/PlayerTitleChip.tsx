@@ -4,9 +4,7 @@ interface PlayerTitleChipProps {
     title: string
 }
 
-
 export default function PlayerTitleChip({ title }: PlayerTitleChipProps) {
-
     return (<div className={`${getBGColor(title)} border-2 rounded border-amber-400 text-white text-[10px] font-body p-1 line-clamp-1`}> 
         {title}
     </div>);
@@ -39,7 +37,6 @@ function getBGColor(title: string) {
         case TITLES.JudgesChosen:
             return 'bg-judge'
         default:
-            return 'bg-white'
-            
+            return 'bg-white'  
     }
 }

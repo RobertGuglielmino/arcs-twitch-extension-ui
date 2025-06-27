@@ -55,7 +55,7 @@ export default function AmbitionGrid({ }: AmbitionGridProps) {
         }
     ]
 
-    return (<div className="w-full ">
+    return (<div className="w-full">
         {AMBITIONS_DATA.map(ambition => (<Ambition
             key={ambition.type}
             ambition={ambition.imageSrc}

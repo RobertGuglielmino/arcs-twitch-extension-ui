@@ -5,7 +5,6 @@ import type { RESOURCES } from "@/components/enums/Resources";
 import { getColor } from "@/utils/getColor";
 import { useImageBus } from "@/hooks/useImageBus";
 
-
 interface PlayerBoardDisplayProps {
   resources: RESOURCES[],
   cities: number,
@@ -16,8 +15,7 @@ interface PlayerBoardDisplayProps {
 }
 
 export default function PlayerBoardDisplay({ resources, cities, outrage, trophies, captives, color }: PlayerBoardDisplayProps) {
-
-    const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
+  const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
 
   const RESOURCE_CONFIG = {
     positions: [
@@ -66,7 +64,6 @@ export default function PlayerBoardDisplay({ resources, cities, outrage, trophie
       .filter((item): item is any => item !== null);
   }
 
-  // Generate city images based on count (0-5, fills right to left)
   function generateCityImages(cityCount: number): PositionedImage[] {
     const clampedCount = Math.max(0, Math.min(5, cityCount));
 
@@ -85,7 +82,6 @@ export default function PlayerBoardDisplay({ resources, cities, outrage, trophie
     });
   }
 
-  // Main function to combine both image types
   function generateAllImages(): PositionedImage[] {
     const fuelImages = generateResourcesImages(resources);
     const cityImages = generateCityImages(cities);
@@ -114,6 +110,21 @@ export default function PlayerBoardDisplay({ resources, cities, outrage, trophie
     const values = generateValues();
 
     return [...outrageComponents, ...values];
+  }
+
+  function getColorImages(color: Color) {
+    switch (color) {
+      case Color.Blue:
+        return gameImages("city_blue");
+      case Color.Red:
+        return gameImages("city_red");
+      case Color.Yellow:
+        return gameImages("city_yellow");
+      case Color.White:
+        return gameImages("city_white");
+      default:
+        return gameImages("city_free");
+    }
   }
 
   const bgColor = getColor(color);
@@ -157,22 +168,6 @@ export default function PlayerBoardDisplay({ resources, cities, outrage, trophie
   ];
 
   const foregroundImages = generateAllImages();
-
-  
-  function getColorImages(color: Color) {
-    switch (color) {
-      case Color.Blue:
-        return gameImages("city_blue");
-      case Color.Red:
-        return gameImages("city_red");
-      case Color.Yellow:
-        return gameImages("city_yellow");
-      case Color.White:
-        return gameImages("city_white");
-      default:
-        return gameImages("city_free");
-    }
-  }
 
   return (<PositionedImages
     backgroundImage={playerBoard}

@@ -1,12 +1,10 @@
 import { useState } from "react";
-// import BackgroundImage from "../../generic/BackgroundImage";
 import CenterDisplay from "../../generic/CenterDisplay";
 
 interface PlayerHoverIconProps {
     imageSrc: string,
     text: string,
     children: any
-
 }
 
 export default function PlayerHoverIcon({ imageSrc, children }: PlayerHoverIconProps) {

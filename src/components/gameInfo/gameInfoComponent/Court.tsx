@@ -7,8 +7,6 @@ interface CourtProps {
     cards: CourtCard[]
 }
 
-
-
 export default function Court({ cards }: CourtProps) {
     const [hover, setHover] = useState(false);
     

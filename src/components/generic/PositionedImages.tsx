@@ -17,8 +17,8 @@ export interface PositionedImage {
 }
 
 interface Position {
-  x: number; 
-  y: number; 
+  x: number;
+  y: number;
 }
 
 interface OverlayItem {
@@ -50,7 +50,7 @@ export const PositionedImages: React.FC<PositionedImagesProps> = ({
         alt={backgroundAlt}
         className="w-full h-auto block"
       />
-      
+
       {foregroundImages.map((image) => (
         <img
           key={image.id}
@@ -66,19 +66,19 @@ export const PositionedImages: React.FC<PositionedImagesProps> = ({
         />
       ))}
 
-        {overlayItems && overlayItems.map((item) => {
-          if (!item) return;
-          return <div
-            key={item.id}
-            className={`absolute transform -translate-x-1/2 -translate-y-1/2 ${item.className || ''}`}
-            style={{
-              left: `${item.position.x}%`,
-              top: `${item.position.y}%`,
-            }}
-          >
-            {item.component}
-          </div>
-        })}
+      {overlayItems && overlayItems.map((item) => {
+        if (!item) return;
+        return <div
+          key={item.id}
+          className={`absolute transform -translate-x-1/2 -translate-y-1/2 ${item.className || ''}`}
+          style={{
+            left: `${item.position.x}%`,
+            top: `${item.position.y}%`,
+          }}
+        >
+          {item.component}
+        </div>
+      })}
     </div>
   );
 };

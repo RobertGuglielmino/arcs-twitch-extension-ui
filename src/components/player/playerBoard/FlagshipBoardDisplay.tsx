@@ -4,15 +4,15 @@ import { PositionedImages } from "@/components/generic/PositionedImages";
 import { useImageBus } from "@/hooks/useImageBus";
 import { useState } from "react";
 
+
+type FlagshipInput = ('city' | 'starport' | '')[];
+
 interface FlagshipBoardDisplayProps {
     color: Color
 }
 
-type FlagshipInput = ('city' | 'starport' | '')[];
-
 export default function FlagshipBoardDisplay({ color }: FlagshipBoardDisplayProps) {
     const [flagshipInput, _] = useState<FlagshipInput>(['city', 'starport', 'starport', 'city', 'city', 'starport', 'starport', 'city', 'city', 'starport', 'starport', 'city']);
-    
     const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
 
     const FLAGSHIP_CONFIG = {
@@ -84,7 +84,3 @@ export default function FlagshipBoardDisplay({ color }: FlagshipBoardDisplayProp
         foregroundImages={foregroundImages}></PositionedImages>);
 
 }
-
-
-
-

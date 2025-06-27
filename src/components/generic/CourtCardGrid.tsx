@@ -7,7 +7,7 @@ interface CourtCardGridProps {
     cards: CourtCard[];
 }
 
-function CourtCardGrid({ cards }: CourtCardGridProps) {
+export default function CourtCardGrid({ cards }: CourtCardGridProps) {
     
     const { getImageSrc: appImages } = useImageBus("APP_IMAGES");
     const { getImageSrc: campaignImages } = useImageBus("CAMPAIGN_IMAGES");
@@ -23,7 +23,6 @@ function CourtCardGrid({ cards }: CourtCardGridProps) {
                     }}>
                     <div className="flex gap-2 mb-1 w-full justify-center">
                         {card.agents.map(agent => {
-                            // const textColor = getTextColor(agent.color);
                             return (<div key={agent.color} className={`flex text-center font-body text-sm px-1 rounded ${getColor(agent.color)} `}>
                                 {agent.value}    
                             </div>)
@@ -37,6 +36,3 @@ function CourtCardGrid({ cards }: CourtCardGridProps) {
             </div>
         </BackgroundImage>);
 }
-
-
-export default CourtCardGrid;

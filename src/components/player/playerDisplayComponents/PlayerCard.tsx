@@ -1,14 +1,15 @@
-import BackgroundImage from "../../generic/BackgroundImage";
-import ObjectiveIcon from "../../icons/ObjectiveIcon";
-import PlayerHoverIcon from "./PlayerHoverIcon";
-import VPIcon from "../../icons/VPIcon";
-import PlayerBoardDisplay from "../playerBoard/PlayerBoardDisplay";
-import PlayerTitleChip from "./PlayerTitleChip";
-import HoverGrid from "../../generic/HoverGrid";
+
 import type { Fates } from "@/components/enums/Fates";
 import type { Color } from "@/components/enums/Colors";
 import type { RESOURCES } from "@/components/enums/Resources";
+import BackgroundImage from "../../generic/BackgroundImage";
+import HoverGrid from "../../generic/HoverGrid";
+import ObjectiveIcon from "../../icons/ObjectiveIcon";
+import VPIcon from "../../icons/VPIcon";
+import PlayerHoverIcon from "./PlayerHoverIcon";
+import PlayerTitleChip from "./PlayerTitleChip";
 import FlagshipBoardDisplay from "../playerBoard/FlagshipBoardDisplay";
+import PlayerBoardDisplay from "../playerBoard/PlayerBoardDisplay";
 import { getColor } from "@/utils/getColor";
 import { useImageBus } from "@/hooks/useImageBus";
 import { getTextColor } from "@/utils/getTextColor";
@@ -29,8 +30,6 @@ interface PlayerCardProps {
 }
 
 export default function PlayerCard({ playerName, fate, color, tyrant, warlord, resources, cities, outrage, objectiveScore, power, courtCards, titles = [] }: PlayerCardProps) {
-
-
     const { getImageSrc: courtImages } = useImageBus("COURT_IMAGES");
     const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
     const { getImageSrc: fateImages } = useImageBus("FATES_IMAGES");
