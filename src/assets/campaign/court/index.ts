@@ -1,375 +1,375 @@
 // src/assets/campaign/court/index.ts
 
-import cc_01 from './cc_01.webp';
-import cc_02 from './cc_02.webp';
-import cc_03 from './cc_03.webp';
-import cc_04 from './cc_04.webp';
-import cc_05 from './cc_05.webp';
-import cc_06 from './cc_06.webp';
-import cc_07 from './cc_07.webp';
-import cc_08 from './cc_08.webp';
-import cc_09 from './cc_09.webp';
-import cc_10 from './cc_10.webp';
-import cc_11 from './cc_11.webp';
-import cc_12 from './cc_12.webp';
-import cc_13 from './cc_13.webp';
-import cc_14 from './cc_14.webp';
-import cc_15 from './cc_15.webp';
+import arcs_cc01 from './ARCS-CC01.webp';
+import arcs_cc02 from './ARCS-CC02.webp';
+import arcs_cc03 from './ARCS-CC03.webp';
+import arcs_cc04 from './ARCS-CC04.webp';
+import arcs_cc05 from './ARCS-CC05.webp';
+import arcs_cc06 from './ARCS-CC06.webp';
+import arcs_cc07 from './ARCS-CC07.webp';
+import arcs_cc08 from './ARCS-CC08.webp';
+import arcs_cc09 from './ARCS-CC09.webp';
+import arcs_cc10 from './ARCS-CC10.webp';
+import arcs_cc11 from './ARCS-CC11.webp';
+import arcs_cc12 from './ARCS-CC12.webp';
+import arcs_cc13 from './ARCS-CC13.webp';
+import arcs_cc14 from './ARCS-CC14.webp';
+import arcs_cc15 from './ARCS-CC15.webp';
 import council_decided from './council_decided.webp';
 import council_in_session from './council_in_session.webp';
-import f01_02 from './f01_02.webp';
-import f01_03 from './f01_03.webp';
-import f01_05 from './f01_05.webp';
-import f01_06 from './f01_06.webp';
-import f01_07 from './f01_07.webp';
-import f01_09 from './f01_09.webp';
-import f01_10 from './f01_10.webp';
-import f01_11 from './f01_11.webp';
-import f01_15 from './f01_15.webp';
-import f01_16 from './f01_16.webp';
-import f01_17 from './f01_17.webp';
-import f01_18 from './f01_18.webp';
-import f01_19 from './f01_19.webp';
-import f01_20 from './f01_20.webp';
-import f01_21 from './f01_21.webp';
-import f02_02 from './f02_02.webp';
-import f02_04 from './f02_04.webp';
-import f02_05 from './f02_05.webp';
-import f02_06 from './f02_06.webp';
-import f02_07 from './f02_07.webp';
-import f02_08 from './f02_08.webp';
-import f02_09 from './f02_09.webp';
-import f02_10 from './f02_10.webp';
-import f02_11 from './f02_11.webp';
-import f02_16 from './f02_16.webp';
-import f02_17 from './f02_17.webp';
-import f02_24 from './f02_24.webp';
-import f02_27 from './f02_27.webp';
-import f03_02 from './f03_02.webp';
-import f03_04 from './f03_04.webp';
-import f03_05 from './f03_05.webp';
-import f03_06 from './f03_06.webp';
-import f03_07 from './f03_07.webp';
-import f03_08 from './f03_08.webp';
-import f03_09 from './f03_09.webp';
-import f03_10 from './f03_10.webp';
-import f03_11 from './f03_11.webp';
-import f03_22 from './f03_22.webp';
-import f03_23 from './f03_23.webp';
-import f04_02 from './f04_02.webp';
-import f04_03 from './f04_03.webp';
-import f04_05 from './f04_05.webp';
-import f04_06 from './f04_06.webp';
-import f04_07 from './f04_07.webp';
-import f04_08 from './f04_08.webp';
-import f04_09 from './f04_09.webp';
-import f04_10 from './f04_10.webp';
-import f04_11 from './f04_11.webp';
-import f04_16 from './f04_16.webp';
-import f04_17 from './f04_17.webp';
-import f04_18 from './f04_18.webp';
-import f04_19 from './f04_19.webp';
-import f04_20 from './f04_20.webp';
-import f04_21 from './f04_21.webp';
-import f04_22 from './f04_22.webp';
-import f04_24 from './f04_24.webp';
-import f05_02 from './f05_02.webp';
-import f05_03 from './f05_03.webp';
-import f05_04 from './f05_04.webp';
-import f05_08 from './f05_08.webp';
-import f05_09 from './f05_09.webp';
-import f05_10 from './f05_10.webp';
-import f05_11 from './f05_11.webp';
-import f05_13 from './f05_13.webp';
-import f05_17 from './f05_17.webp';
-import f05_18 from './f05_18.webp';
-import f05_19 from './f05_19.webp';
-import f06_02 from './f06_02.webp';
-import f06_05 from './f06_05.webp';
-import f06_06 from './f06_06.webp';
-import f06_07 from './f06_07.webp';
-import f06_08 from './f06_08.webp';
-import f06_09 from './f06_09.webp';
-import f06_10 from './f06_10.webp';
-import f06_11 from './f06_11.webp';
-import f06_12 from './f06_12.webp';
-import f06_13 from './f06_13.webp';
-import f06_14 from './f06_14.webp';
-import f06_17 from './f06_17.webp';
-import f06_20 from './f06_20.webp';
-import f06_21 from './f06_21.webp';
-import f06_22 from './f06_22.webp';
-import f06_23 from './f06_23.webp';
-import f06_25 from './f06_25.webp';
-import f07_02 from './f07_02.webp';
-import f07_05 from './f07_05.webp';
-import f07_06 from './f07_06.webp';
-import f07_07 from './f07_07.webp';
-import f07_08 from './f07_08.webp';
-import f07_09 from './f07_09.webp';
-import f07_10 from './f07_10.webp';
-import f07_11 from './f07_11.webp';
-import f07_13 from './f07_13.webp';
-import f07_15 from './f07_15.webp';
-import f07_16 from './f07_16.webp';
-import f07_17 from './f07_17.webp';
-import f07_18 from './f07_18.webp';
-import f08_02 from './f08_02.webp';
-import f08_16 from './f08_16.webp';
-import f08_17 from './f08_17.webp';
-import f08_18 from './f08_18.webp';
-import f08_19 from './f08_19.webp';
-import f08_25 from './f08_25.webp';
-import f08_26 from './f08_26.webp';
-import f09_05 from './f09_05.webp';
-import f09_06 from './f09_06.webp';
-import f09_09 from './f09_09.webp';
-import f09_10 from './f09_10.webp';
-import f09_11 from './f09_11.webp';
-import f10_04 from './f10_04.webp';
-import f10_06 from './f10_06.webp';
-import f10_07 from './f10_07.webp';
-import f10_08 from './f10_08.webp';
-import f10_09 from './f10_09.webp';
-import f10_10 from './f10_10.webp';
-import f10_12 from './f10_12.webp';
-import f11_02 from './f11_02.webp';
-import f11_04 from './f11_04.webp';
-import f11_05 from './f11_05.webp';
-import f11_06 from './f11_06.webp';
-import f11_07 from './f11_07.webp';
-import f11_08 from './f11_08.webp';
-import f11_09 from './f11_09.webp';
-import f11_11 from './f11_11.webp';
-import f12_02 from './f12_02.webp';
-import f12_03 from './f12_03.webp';
-import f12_05 from './f12_05.webp';
-import f12_06 from './f12_06.webp';
-import f12_07 from './f12_07.webp';
-import f12_09 from './f12_09.webp';
-import f12_10 from './f12_10.webp';
-import f13_02 from './f13_02.webp';
-import f13_04 from './f13_04.webp';
-import f13_05 from './f13_05.webp';
-import f13_06 from './f13_06.webp';
-import f13_07 from './f13_07.webp';
-import f13_08 from './f13_08.webp';
-import f13_09 from './f13_09.webp';
-import f13_10 from './f13_10.webp';
-import f13_11 from './f13_11.webp';
-import f13_13 from './f13_13.webp';
-import f14_03 from './f14_03.webp';
-import f14_05 from './f14_05.webp';
-import f14_06 from './f14_06.webp';
-import f14_07 from './f14_07.webp';
-import f15_02 from './f15_02.webp';
-import f15_03 from './f15_03.webp';
-import f15_05 from './f15_05.webp';
-import f15_06 from './f15_06.webp';
-import f16_02 from './f16_02.webp';
-import f16_12 from './f16_12.webp';
-import f16_13 from './f16_13.webp';
-import f16_14 from './f16_14.webp';
-import f16_15 from './f16_15.webp';
-import f16_16 from './f16_16.webp';
-import f17_02 from './f17_02.webp';
-import f18_02 from './f18_02.webp';
-import f19_02 from './f19_02.webp';
-import f19_04 from './f19_04.webp';
-import f20_02 from './f20_02.webp';
-import f20_03 from './f20_03.webp';
-import f21_02 from './f21_02.webp';
-import f21_03 from './f21_03.webp';
-import f22_02 from './f22_02.webp';
-import f22_06 from './f22_06.webp';
-import f23_02 from './f23_02.webp';
-import f24_02 from './f24_02.webp';
-import f24_03 from './f24_03.webp';
+import arcs_f0102 from './ARCS-F0102.webp';
+import arcs_f0103 from './ARCS-F0103.webp';
+import arcs_f0105 from './ARCS-F0105.webp';
+import arcs_f0106 from './ARCS-F0106.webp';
+import arcs_f0107 from './ARCS-F0107.webp';
+import arcs_f0109 from './ARCS-F0109.webp';
+import arcs_f0110 from './ARCS-F0110.webp';
+import arcs_f0111 from './ARCS-F0111.webp';
+import arcs_f0115 from './ARCS-F0115.webp';
+import arcs_f0116 from './ARCS-F0116.webp';
+import arcs_f0117 from './ARCS-F0117.webp';
+import arcs_f0118 from './ARCS-F0118.webp';
+import arcs_f0119 from './ARCS-F0119.webp';
+import arcs_f0120 from './ARCS-F0120.webp';
+import arcs_f0121 from './ARCS-F0121.webp';
+import arcs_f0202 from './ARCS-F0202.webp';
+import arcs_f0204 from './ARCS-F0204.webp';
+import arcs_f0205 from './ARCS-F0205.webp';
+import arcs_f0206 from './ARCS-F0206.webp';
+import arcs_f0207 from './ARCS-F0207.webp';
+import arcs_f0208 from './ARCS-F0208.webp';
+import arcs_f0209 from './ARCS-F0209.webp';
+import arcs_f0210 from './ARCS-F0210.webp';
+import arcs_f0211 from './ARCS-F0211.webp';
+import arcs_f0216 from './ARCS-F0216.webp';
+import arcs_f0217 from './ARCS-F0217.webp';
+import arcs_f0224 from './ARCS-F0224.webp';
+import arcs_f0227 from './ARCS-F0227.webp';
+import arcs_f0302 from './ARCS-F0302.webp';
+import arcs_f0304 from './ARCS-F0304.webp';
+import arcs_f0305 from './ARCS-F0305.webp';
+import arcs_f0306 from './ARCS-F0306.webp';
+import arcs_f0307 from './ARCS-F0307.webp';
+import arcs_f0308 from './ARCS-F0308.webp';
+import arcs_f0309 from './ARCS-F0309.webp';
+import arcs_f0310 from './ARCS-F0310.webp';
+import arcs_f0311 from './ARCS-F0311.webp';
+import arcs_f0322 from './ARCS-F0322.webp';
+import arcs_f0323 from './ARCS-F0323.webp';
+import arcs_f0402 from './ARCS-F0402.webp';
+import arcs_f0403 from './ARCS-F0403.webp';
+import arcs_f0405 from './ARCS-F0405.webp';
+import arcs_f0406 from './ARCS-F0406.webp';
+import arcs_f0407 from './ARCS-F0407.webp';
+import arcs_f0408 from './ARCS-F0408.webp';
+import arcs_f0409 from './ARCS-F0409.webp';
+import arcs_f0410 from './ARCS-F0410.webp';
+import arcs_f0411 from './ARCS-F0411.webp';
+import arcs_f0416 from './ARCS-F0416.webp';
+import arcs_f0417 from './ARCS-F0417.webp';
+import arcs_f0418 from './ARCS-F0418.webp';
+import arcs_f0419 from './ARCS-F0419.webp';
+import arcs_f0420 from './ARCS-F0420.webp';
+import arcs_f0421 from './ARCS-F0421.webp';
+import arcs_f0422 from './ARCS-F0422.webp';
+import arcs_f0424 from './ARCS-F0424.webp';
+import arcs_f0502 from './ARCS-F0502.webp';
+import arcs_f0503 from './ARCS-F0503.webp';
+import arcs_f0504 from './ARCS-F0504.webp';
+import arcs_f0508 from './ARCS-F0508.webp';
+import arcs_f0509 from './ARCS-F0509.webp';
+import arcs_f0510 from './ARCS-F0510.webp';
+import arcs_f0511 from './ARCS-F0511.webp';
+import arcs_f0513 from './ARCS-F0513.webp';
+import arcs_f0517 from './ARCS-F0517.webp';
+import arcs_f0518 from './ARCS-F0518.webp';
+import arcs_f0519 from './ARCS-F0519.webp';
+import arcs_f0602 from './ARCS-F0602.webp';
+import arcs_f0605 from './ARCS-F0605.webp';
+import arcs_f0606 from './ARCS-F0606.webp';
+import arcs_f0607 from './ARCS-F0607.webp';
+import arcs_f0608 from './ARCS-F0608.webp';
+import arcs_f0609 from './ARCS-F0609.webp';
+import arcs_f0610 from './ARCS-F0610.webp';
+import arcs_f0611 from './ARCS-F0611.webp';
+import arcs_f0612 from './ARCS-F0612.webp';
+import arcs_f0613 from './ARCS-F0613.webp';
+import arcs_f0614 from './ARCS-F0614.webp';
+import arcs_f0617 from './ARCS-F0617.webp';
+import arcs_f0620 from './ARCS-F0620.webp';
+import arcs_f0621 from './ARCS-F0621.webp';
+import arcs_f0622 from './ARCS-F0622.webp';
+import arcs_f0623 from './ARCS-F0623.webp';
+import arcs_f0625 from './ARCS-F0625.webp';
+import arcs_f0702 from './ARCS-F0702.webp';
+import arcs_f0705 from './ARCS-F0705.webp';
+import arcs_f0706 from './ARCS-F0706.webp';
+import arcs_f0707 from './ARCS-F0707.webp';
+import arcs_f0708 from './ARCS-F0708.webp';
+import arcs_f0709 from './ARCS-F0709.webp';
+import arcs_f0710 from './ARCS-F0710.webp';
+import arcs_f0711 from './ARCS-F0711.webp';
+import arcs_f0713 from './ARCS-F0713.webp';
+import arcs_f0715 from './ARCS-F0715.webp';
+import arcs_f0716 from './ARCS-F0716.webp';
+import arcs_f0717 from './ARCS-F0717.webp';
+import arcs_f0718 from './ARCS-F0718.webp';
+import arcs_f0802 from './ARCS-F0802.webp';
+import arcs_f0816 from './ARCS-F0816.webp';
+import arcs_f0817 from './ARCS-F0817.webp';
+import arcs_f0818 from './ARCS-F0818.webp';
+import arcs_f0819 from './ARCS-F0819.webp';
+import arcs_f0825 from './ARCS-F0825.webp';
+import arcs_f0826 from './ARCS-F0826.webp';
+import arcs_f0905 from './ARCS-F0905.webp';
+import arcs_f0906 from './ARCS-F0906.webp';
+import arcs_f0909 from './ARCS-F0909.webp';
+import arcs_f0910 from './ARCS-F0910.webp';
+import arcs_f0911 from './ARCS-F0911.webp';
+import arcs_f1004 from './ARCS-F1004.webp';
+import arcs_f1006 from './ARCS-F1006.webp';
+import arcs_f1007 from './ARCS-F1007.webp';
+import arcs_f1008 from './ARCS-F1008.webp';
+import arcs_f1009 from './ARCS-F1009.webp';
+import arcs_f1010 from './ARCS-F1010.webp';
+import arcs_f1012 from './ARCS-F1012.webp';
+import arcs_f1102 from './ARCS-F1102.webp';
+import arcs_f1104 from './ARCS-F1104.webp';
+import arcs_f1105 from './ARCS-F1105.webp';
+import arcs_f1106 from './ARCS-F1106.webp';
+import arcs_f1107 from './ARCS-F1107.webp';
+import arcs_f1108 from './ARCS-F1108.webp';
+import arcs_f1109 from './ARCS-F1109.webp';
+import arcs_f1111 from './ARCS-F1111.webp';
+import arcs_f1202 from './ARCS-F1202.webp';
+import arcs_f1203 from './ARCS-F1203.webp';
+import arcs_f1205 from './ARCS-F1205.webp';
+import arcs_f1206 from './ARCS-F1206.webp';
+import arcs_f1207 from './ARCS-F1207.webp';
+import arcs_f1209 from './ARCS-F1209.webp';
+import arcs_f1210 from './ARCS-F1210.webp';
+import arcs_f1302 from './ARCS-F1302.webp';
+import arcs_f1304 from './ARCS-F1304.webp';
+import arcs_f1305 from './ARCS-F1305.webp';
+import arcs_f1306 from './ARCS-F1306.webp';
+import arcs_f1307 from './ARCS-F1307.webp';
+import arcs_f1308 from './ARCS-F1308.webp';
+import arcs_f1309 from './ARCS-F1309.webp';
+import arcs_f1310 from './ARCS-F1310.webp';
+import arcs_f1311 from './ARCS-F1311.webp';
+import arcs_f1313 from './ARCS-F1313.webp';
+import arcs_f1403 from './ARCS-F1403.webp';
+import arcs_f1405 from './ARCS-F1405.webp';
+import arcs_f1406 from './ARCS-F1406.webp';
+import arcs_f1407 from './ARCS-F1407.webp';
+import arcs_f1502 from './ARCS-F1502.webp';
+import arcs_f1503 from './ARCS-F1503.webp';
+import arcs_f1505 from './ARCS-F1505.webp';
+import arcs_f1506 from './ARCS-F1506.webp';
+import arcs_f1602 from './ARCS-F1602.webp';
+import arcs_f1612 from './ARCS-F1612.webp';
+import arcs_f1613 from './ARCS-F1613.webp';
+import arcs_f1614 from './ARCS-F1614.webp';
+import arcs_f1615 from './ARCS-F1615.webp';
+import arcs_f1616 from './ARCS-F1616.webp';
+import arcs_f1702 from './ARCS-F1702.webp';
+import arcs_f1802 from './ARCS-F1802.webp';
+import arcs_f1902 from './ARCS-F1902.webp';
+import arcs_f1904 from './ARCS-F1904.webp';
+import arcs_f2002 from './ARCS-F2002.webp';
+import arcs_f2003 from './ARCS-F2003.webp';
+import arcs_f2102 from './ARCS-F2102.webp';
+import arcs_f2103 from './ARCS-F2103.webp';
+import arcs_f2202 from './ARCS-F2202.webp';
+import arcs_f2206 from './ARCS-F2206.webp';
+import arcs_f2302 from './ARCS-F2302.webp';
+import arcs_f2402 from './ARCS-F2402.webp';
+import arcs_f2403 from './ARCS-F2403.webp';
 
 export const COURT_IMAGES = {
-  cc_01,
-  cc_02,
-  cc_03,
-  cc_04,
-  cc_05,
-  cc_06,
-  cc_07,
-  cc_08,
-  cc_09,
-  cc_10,
-  cc_11,
-  cc_12,
-  cc_13,
-  cc_14,
-  cc_15,
-  council_decided,
-  council_in_session,
-  f01_02,
-  f01_03,
-  f01_05,
-  f01_06,
-  f01_07,
-  f01_09,
-  f01_10,
-  f01_11,
-  f01_15,
-  f01_16,
-  f01_17,
-  f01_18,
-  f01_19,
-  f01_20,
-  f01_21,
-  f02_02,
-  f02_04,
-  f02_05,
-  f02_06,
-  f02_07,
-  f02_08,
-  f02_09,
-  f02_10,
-  f02_11,
-  f02_16,
-  f02_17,
-  f02_24,
-  f02_27,
-  f03_02,
-  f03_04,
-  f03_05,
-  f03_06,
-  f03_07,
-  f03_08,
-  f03_09,
-  f03_10,
-  f03_11,
-  f03_22,
-  f03_23,
-  f04_02,
-  f04_03,
-  f04_05,
-  f04_06,
-  f04_07,
-  f04_08,
-  f04_09,
-  f04_10,
-  f04_11,
-  f04_16,
-  f04_17,
-  f04_18,
-  f04_19,
-  f04_20,
-  f04_21,
-  f04_22,
-  f04_24,
-  f05_02,
-  f05_03,
-  f05_04,
-  f05_08,
-  f05_09,
-  f05_10,
-  f05_11,
-  f05_13,
-  f05_17,
-  f05_18,
-  f05_19,
-  f06_02,
-  f06_05,
-  f06_06,
-  f06_07,
-  f06_08,
-  f06_09,
-  f06_10,
-  f06_11,
-  f06_12,
-  f06_13,
-  f06_14,
-  f06_17,
-  f06_20,
-  f06_21,
-  f06_22,
-  f06_23,
-  f06_25,
-  f07_02,
-  f07_05,
-  f07_06,
-  f07_07,
-  f07_08,
-  f07_09,
-  f07_10,
-  f07_11,
-  f07_13,
-  f07_15,
-  f07_16,
-  f07_17,
-  f07_18,
-  f08_02,
-  f08_16,
-  f08_17,
-  f08_18,
-  f08_19,
-  f08_25,
-  f08_26,
-  f09_05,
-  f09_06,
-  f09_09,
-  f09_10,
-  f09_11,
-  f10_04,
-  f10_06,
-  f10_07,
-  f10_08,
-  f10_09,
-  f10_10,
-  f10_12,
-  f11_02,
-  f11_04,
-  f11_05,
-  f11_06,
-  f11_07,
-  f11_08,
-  f11_09,
-  f11_11,
-  f12_02,
-  f12_03,
-  f12_05,
-  f12_06,
-  f12_07,
-  f12_09,
-  f12_10,
-  f13_02,
-  f13_04,
-  f13_05,
-  f13_06,
-  f13_07,
-  f13_08,
-  f13_09,
-  f13_10,
-  f13_11,
-  f13_13,
-  f14_03,
-  f14_05,
-  f14_06,
-  f14_07,
-  f15_02,
-  f15_03,
-  f15_05,
-  f15_06,
-  f16_02,
-  f16_12,
-  f16_13,
-  f16_14,
-  f16_15,
-  f16_16,
-  f17_02,
-  f18_02,
-  f19_02,
-  f19_04,
-  f20_02,
-  f20_03,
-  f21_02,
-  f21_03,
-  f22_02,
-  f22_06,
-  f23_02,
-  f24_02,
-  f24_03,
+  arcs_cc01,
+  arcs_cc02,
+  arcs_cc03,
+  arcs_cc04,
+  arcs_cc05,
+  arcs_cc06,
+  arcs_cc07,
+  arcs_cc08,
+  arcs_cc09,
+  arcs_cc10,
+  arcs_cc11,
+  arcs_cc12,
+  arcs_cc13,
+  arcs_cc14,
+  arcs_cc15,
+  council_decided, 
+  council_in_session, 
+  arcs_f0102,
+  arcs_f0103,
+  arcs_f0105,
+  arcs_f0106,
+  arcs_f0107,
+  arcs_f0109,
+  arcs_f0110,
+  arcs_f0111,
+  arcs_f0115,
+  arcs_f0116,
+  arcs_f0117,
+  arcs_f0118,
+  arcs_f0119,
+  arcs_f0120,
+  arcs_f0121,
+  arcs_f0202,
+  arcs_f0204,
+  arcs_f0205,
+  arcs_f0206,
+  arcs_f0207,
+  arcs_f0208,
+  arcs_f0209,
+  arcs_f0210,
+  arcs_f0211,
+  arcs_f0216,
+  arcs_f0217,
+  arcs_f0224,
+  arcs_f0227,
+  arcs_f0302,
+  arcs_f0304,
+  arcs_f0305,
+  arcs_f0306,
+  arcs_f0307,
+  arcs_f0308,
+  arcs_f0309,
+  arcs_f0310,
+  arcs_f0311,
+  arcs_f0322,
+  arcs_f0323,
+  arcs_f0402,
+  arcs_f0403,
+  arcs_f0405,
+  arcs_f0406,
+  arcs_f0407,
+  arcs_f0408,
+  arcs_f0409,
+  arcs_f0410,
+  arcs_f0411,
+  arcs_f0416,
+  arcs_f0417,
+  arcs_f0418,
+  arcs_f0419,
+  arcs_f0420,
+  arcs_f0421,
+  arcs_f0422,
+  arcs_f0424,
+  arcs_f0502,
+  arcs_f0503,
+  arcs_f0504,
+  arcs_f0508,
+  arcs_f0509,
+  arcs_f0510,
+  arcs_f0511,
+  arcs_f0513,
+  arcs_f0517,
+  arcs_f0518,
+  arcs_f0519,
+  arcs_f0602,
+  arcs_f0605,
+  arcs_f0606,
+  arcs_f0607,
+  arcs_f0608,
+  arcs_f0609,
+  arcs_f0610,
+  arcs_f0611,
+  arcs_f0612,
+  arcs_f0613,
+  arcs_f0614,
+  arcs_f0617,
+  arcs_f0620,
+  arcs_f0621,
+  arcs_f0622,
+  arcs_f0623,
+  arcs_f0625,
+  arcs_f0702,
+  arcs_f0705,
+  arcs_f0706,
+  arcs_f0707,
+  arcs_f0708,
+  arcs_f0709,
+  arcs_f0710,
+  arcs_f0711,
+  arcs_f0713,
+  arcs_f0715,
+  arcs_f0716,
+  arcs_f0717,
+  arcs_f0718,
+  arcs_f0802,
+  arcs_f0816,
+  arcs_f0817,
+  arcs_f0818,
+  arcs_f0819,
+  arcs_f0825,
+  arcs_f0826,
+  arcs_f0905,
+  arcs_f0906,
+  arcs_f0909,
+  arcs_f0910,
+  arcs_f0911,
+  arcs_f1004,
+  arcs_f1006,
+  arcs_f1007,
+  arcs_f1008,
+  arcs_f1009,
+  arcs_f1010,
+  arcs_f1012,
+  arcs_f1102,
+  arcs_f1104,
+  arcs_f1105,
+  arcs_f1106,
+  arcs_f1107,
+  arcs_f1108,
+  arcs_f1109,
+  arcs_f1111,
+  arcs_f1202,
+  arcs_f1203,
+  arcs_f1205,
+  arcs_f1206,
+  arcs_f1207,
+  arcs_f1209,
+  arcs_f1210,
+  arcs_f1302,
+  arcs_f1304,
+  arcs_f1305,
+  arcs_f1306,
+  arcs_f1307,
+  arcs_f1308,
+  arcs_f1309,
+  arcs_f1310,
+  arcs_f1311,
+  arcs_f1313,
+  arcs_f1403,
+  arcs_f1405,
+  arcs_f1406,
+  arcs_f1407,
+  arcs_f1502,
+  arcs_f1503,
+  arcs_f1505,
+  arcs_f1506,
+  arcs_f1602,
+  arcs_f1612,
+  arcs_f1613,
+  arcs_f1614,
+  arcs_f1615,
+  arcs_f1616,
+  arcs_f1702,
+  arcs_f1802,
+  arcs_f1902,
+  arcs_f1904,
+  arcs_f2002,
+  arcs_f2003,
+  arcs_f2102,
+  arcs_f2103,
+  arcs_f2202,
+  arcs_f2206,
+  arcs_f2302,
+  arcs_f2402,
+  arcs_f2403,
 } as const;
