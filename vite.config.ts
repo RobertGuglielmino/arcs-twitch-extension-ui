@@ -23,6 +23,12 @@ export default defineConfig({
       outDir: ".",
     }),
   ],
+  server: {
+    headers: {
+      'Cache-Control': 'public, max-age=31536000',
+    },
+    cors: true,
+  },
   build: {
     rollupOptions: {
       input: {
@@ -43,7 +49,7 @@ export default defineConfig({
     },
     cssCodeSplit: false,
     cssTarget: "chrome61",
-    assetsInlineLimit: 0,
+    assetsInlineLimit: 1638400,
     sourcemap: false,
     emptyOutDir: true,
     outDir: "dist",

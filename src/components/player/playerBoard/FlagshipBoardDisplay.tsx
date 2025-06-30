@@ -1,7 +1,7 @@
 import flagshipBoard from "/src/assets/campaign/flagship-board.webp"
 import { Color } from "@/components/enums/Colors";
 import { PositionedImages } from "@/components/generic/PositionedImages";
-import { useImageBus } from "@/hooks/useImageBus";
+import { useImageBus } from "@/stores/imageStore";
 import { useState } from "react";
 
 

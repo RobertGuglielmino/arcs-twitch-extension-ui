@@ -1,7 +1,7 @@
 import Ambition from "./Ambition";
 import { AmbitionMarkers } from "@/components/enums/AmbitionMarkers";
 import { Ambitions } from "@/components/enums/Ambitions";
-import { useImageBus } from "@/hooks/useImageBus";
+import { useImageBus } from "@/stores/imageStore";
 
 interface AmbitionGridProps {
 

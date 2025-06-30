@@ -1,6 +1,6 @@
 import BackgroundImage from "../../generic/BackgroundImage";
 import { AmbitionMarkers } from "../../enums/AmbitionMarkers";
-import { useImageBus } from "@/hooks/useImageBus";
+import { useImageBus } from "@/stores/imageStore";
 
 interface AmbitionProps {
     ambition: string,

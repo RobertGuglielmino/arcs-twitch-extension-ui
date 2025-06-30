@@ -1,11 +1,13 @@
-import playerBoard from "/src/assets/game/board.webp"
+
 import { PositionedImages, type PositionedImage } from "@/components/generic/PositionedImages";
 import { Color } from "@/components/enums/Colors";
 import type { RESOURCES } from "@/components/enums/Resources";
 import { getColor } from "@/utils/getColor";
-import { useImageBus } from "@/hooks/useImageBus";
+import { GAME_IMAGES } from "@/assets/game";
+import { useImageBus } from "@/stores/imageStore";
 
 interface PlayerBoardDisplayProps {
+  playerBoard: string,
   resources: RESOURCES[],
   cities: number,
   outrage: boolean[],
@@ -14,7 +16,7 @@ interface PlayerBoardDisplayProps {
   color: Color
 }
 
-export default function PlayerBoardDisplay({ resources, cities, outrage, trophies, captives, color }: PlayerBoardDisplayProps) {
+export default function PlayerBoardDisplay({ playerBoard, resources, cities, outrage, trophies, captives, color }: PlayerBoardDisplayProps) {
   const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
 
   const RESOURCE_CONFIG = {
@@ -28,11 +30,11 @@ export default function PlayerBoardDisplay({ resources, cities, outrage, trophie
     ],
     size: { width: 11 },
     images: {
-      "material": gameImages("material"),
-      "fuel": gameImages("fuel"),
-      "weapons": gameImages("weapons"),
-      "relic": gameImages("relic"),
-      "psionics": gameImages("psionics"),
+      "material": GAME_IMAGES.material,
+      "fuel": GAME_IMAGES.fuel,
+      "weapons": GAME_IMAGES.weapons,
+      "relic": GAME_IMAGES.relic,
+      "psionics": GAME_IMAGES.psionics,
     }
   };
 

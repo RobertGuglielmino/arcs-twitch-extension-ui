@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CenterDisplay from "../../generic/CenterDisplay";
 import HoverGrid from "@/components/generic/HoverGrid";
-import { useImageBus } from "@/hooks/useImageBus";
+import { useImageBus } from "@/stores/imageStore";
 
 interface EdictsProps {
     cards: string[]

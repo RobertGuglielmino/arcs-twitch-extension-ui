@@ -1,57 +1,57 @@
-// src/assets/campaign/edicts/index.ts
+// Direct imports
+import ARCS_AID02 from './ARCS-AID02.webp';
+import ARCS_AID03 from './ARCS-AID03.webp';
+import ARCS_AID04 from './ARCS-AID04.webp';
+import ARCS_AID05 from './ARCS-AID05.webp';
+import ARCS_F113 from './ARCS-F113.webp';
+import ARCS_F123 from './ARCS-F123.webp';
+import ARCS_F124 from './ARCS-F124.webp';
+import ARCS_F125 from './ARCS-F125.webp';
+import ARCS_F126 from './ARCS-F126.webp';
+import ARCS_F215 from './ARCS-F215.webp';
+import ARCS_F226 from './ARCS-F226.webp';
+import ARCS_F318 from './ARCS-F318.webp';
+import ARCS_F413 from './ARCS-F413.webp';
+import ARCS_F521 from './ARCS-F521.webp';
+import ARCS_F619 from './ARCS-F619.webp';
+import ARCS_F703 from './ARCS-F703.webp';
+import ARCS_F821 from './ARCS-F821.webp';
+import ARCS_F827 from './ARCS-F827.webp';
+import ARCS_F1412 from './ARCS-F1412.webp';
+import ARCS_F1509 from './ARCS-F1509.webp';
+import ARCS_F1510 from './ARCS-F1510.webp';
+import ARCS_F1619 from './ARCS-F1619.webp';
+import ARCS_F1703 from './ARCS-F1703.webp';
+import ARCS_F1805 from './ARCS-F1805.webp';
+import ARCS_F1903 from './ARCS-F1903.webp';
+import ARCS_F2405 from './ARCS-F2405.webp';
 
-import dc_02 from './dc_02.webp';
-import dc_03 from './dc_03.webp';
-import dc_04 from './dc_04.webp';
-import dc_05 from './dc_05.webp';
-import f01_13 from './f01_13.webp';
-import f01_23 from './f01_23.webp';
-import f01_24 from './f01_24.webp';
-import f01_25 from './f01_25.webp';
-import f01_26 from './f01_26.webp';
-import f02_15 from './f02_15.webp';
-import f02_26 from './f02_26.webp';
-import f03_18 from './f03_18.webp';
-import f04_13 from './f04_13.webp';
-import f05_21 from './f05_21.webp';
-import f06_19 from './f06_19.webp';
-import f07_03 from './f07_03.webp';
-import f08_21 from './f08_21.webp';
-import f08_27 from './f08_27.webp';
-import f14_12 from './f14_12.webp';
-import f15_09 from './f15_09.webp';
-import f15_10 from './f15_10.webp';
-import f16_19 from './f16_19.webp';
-import f17_03 from './f17_03.webp';
-import f18_05 from './f18_05.webp';
-import f19_03 from './f19_03.webp';
-import f24_05 from './f24_05.webp';
-
+// Export object
 export const EDICT_IMAGES = {
-  dc_02,
-  dc_03,
-  dc_04,
-  dc_05,
-  f01_13,
-  f01_23,
-  f01_24,
-  f01_25,
-  f01_26,
-  f02_15,
-  f02_26,
-  f03_18,
-  f04_13,
-  f05_21,
-  f06_19,
-  f07_03,
-  f08_21,
-  f08_27,
-  f14_12,
-  f15_09,
-  f15_10,
-  f16_19,
-  f17_03,
-  f18_05,
-  f19_03,
-  f24_05,
+  ARCS_AID02,
+  ARCS_AID03,
+  ARCS_AID04,
+  ARCS_AID05,
+  ARCS_F113,
+  ARCS_F123,
+  ARCS_F124,
+  ARCS_F125,
+  ARCS_F126,
+  ARCS_F215,
+  ARCS_F226,
+  ARCS_F318,
+  ARCS_F413,
+  ARCS_F521,
+  ARCS_F619,
+  ARCS_F703,
+  ARCS_F821,
+  ARCS_F827,
+  ARCS_F1412,
+  ARCS_F1509,
+  ARCS_F1510,
+  ARCS_F1619,
+  ARCS_F1703,
+  ARCS_F1805,
+  ARCS_F1903,
+  ARCS_F2405,
 } as const;

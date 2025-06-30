@@ -1,7 +1,7 @@
+import { useImageBus } from "@/stores/imageStore";
 import BackgroundImage from "./BackgroundImage";
 import { getColor } from "@/utils/getColor";
 import type { CourtCard } from "@robertguglielmino/arcs-types";
-import { useImageBus } from "@/hooks/useImageBus";
 
 interface CourtCardGridProps {
     cards: CourtCard[];

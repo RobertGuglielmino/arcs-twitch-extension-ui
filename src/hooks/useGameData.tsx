@@ -5,7 +5,115 @@ import { TITLES } from "@/components/enums/Titles";
 import pako from "pako";
 import { useEffect, useState } from "react";
 import { Color } from "@/components/enums/Colors";
+import { useImagePreloader } from "@/stores/imageStore";
 
+
+function extractImagesFromGameData(data: GameData) {
+  const appImages: string[] = [];
+  const campaignImages: string[] = [];
+  const courtImages: string[] = [];
+  const edictImages: string[] = [];
+  const fatesImages: string[] = [];
+  const gameImages: string[] = [];
+  const lawImages: string[] = [];
+
+  // APP IMAGES
+  appImages.push('background');
+
+  // CAMPAIGN IMAGES
+  const campaignImagesToAdd = [
+    "flagshipBoard",
+    "firstRegent",
+    "flagship"
+  ]
+
+  campaignImagesToAdd.forEach(str => campaignImages.push(str));
+
+
+  // COURT IMAGES
+  data.playerData.courtCards.forEach(playerCards => {
+    playerCards.forEach(cardId => {
+      if (cardId) courtImages.push(cardId);
+    });
+  });
+
+  // data.gameData.courtCards.forEach(courtCard => {
+  //   if (courtCard.id) courtImages.push(`court_card_${courtCard.id}`);
+  // });
+
+
+  // EDICT IMAGES
+  data.gameData.edicts.forEach(edict => {
+    if (edict) edictImages.push(edict);
+  });
+
+
+  // FATES IMAGES
+  data.playerData.fate.forEach(fate => {
+    if (fate && fate !== null) fatesImages.push(fate);
+  });
+
+
+  // GAMES IMAGES
+  const gameImagesToAdd = [
+    "action",
+    "ambition_back",
+    "ambition",
+    "board",
+
+    RESOURCES.Material,
+    RESOURCES.Fuel,
+    RESOURCES.Weapons,
+    RESOURCES.Relic,
+    RESOURCES.Psionics,
+
+    "starport_free",
+    "city_free",
+    
+    "empath",
+    "keeper",
+    "tycoon",
+    "tyrant",
+    "warlord",
+    "blightkin",
+    "edenguard",
+    
+    "firstGold",
+    "firstSilver",
+    "secondGold",
+    "secondSilver",
+    "thirdGold",
+    "thirdSilver",
+    
+    "cardBack",
+    "cardBackSideways",
+  ];
+
+  gameImagesToAdd.forEach(str => gameImages.push(str));
+  
+  data.playerData.color.forEach(color => {
+    if (color) {
+      gameImages.push(`city_${color}`);
+      gameImages.push(`starport_${color}`);
+    }
+  });
+
+
+  // LAW IMAGES
+  data.gameData.laws.forEach(law => {
+    if (law && law !== "") lawImages.push(law);
+  });
+
+  return {
+    gameAssets: [...new Set(gameImages)], 
+    appAssets: [...new Set(appImages)],
+    campaignAssets: [...new Set(campaignImages)],
+    courtAssets: [...new Set(courtImages)],
+    fateAssets: [...new Set(fatesImages)],
+    edictAssets: [...new Set(edictImages)],
+    lawAssets: [...new Set(lawImages)],
+  };
+}
 
 const mockData: GameData = {
     playerData: {
@@ -23,9 +131,9 @@ const mockData: GameData = {
         supply: { agents: [3, 3, 3, 3], ships: [4, 4, 4, 4], cities: [2, 4, 2, 2], starports: [5, 5, 5, 5], favors: [] },
         outrage: [[true, false, false, true, false], [false, true, true, true, false], [true, false, true, false, true], [false, false, false, false, true], [false, false, false, false, false]],
         courtCards: [
-            ["f01_02", "f01_03", "f01_05", "f01_06", "f01_07"],
-            ["f05_02", "f05_03", "f05_04"],
-            ["f06_02", "f06_05", "f06_06", "f06_07", "f06_08", "f06_09", "f06_10", "f06_11", "f06_12", "f06_13", "f06_14", "f06_17", "f06_20", "f06_21", "f06_22", "f06_23", "f06_25"],
+            ["ARCS_F0102", "ARCS_F0103", "ARCS_F0105", "ARCS_F0106", "ARCS_F0107"],
+            ["ARCS_F0502", "ARCS_F0503", "ARCS_F0504"],
+            ["ARCS_F0602", "ARCS_F0605", "ARCS_F0606", "ARCS_F0607", "ARCS_F0608", "ARCS_F0609", "ARCS_F0610", "ARCS_F0611", "ARCS_F0612", "ARCS_F0613", "ARCS_F0614", "ARCS_F0617", "ARCS_F0620", "ARCS_F0621", "ARCS_F0622", "ARCS_F0623", "ARCS_F0625"],
             []
         ],
         ambitionProgress: {
@@ -52,10 +160,10 @@ const mockData: GameData = {
         isCampaign: true,
         ambitionDeclarations: [],
         courtCards: [
-            { id: "f01_05", agents: [{ color: Color.Red, value: 4 }] },
-            { id: "f01_06", agents: [{ color: Color.Yellow, value: 3 }] },
-            { id: "f01_07", agents: [{ color: Color.Blue, value: 2 }] },
-            { id: "f01_08", agents: [{ color: Color.White, value: 1 }] }
+            { id: "ARCS_F0105", agents: [{ color: Color.Red, value: 4 }] },
+            { id: "ARCS_F0106", agents: [{ color: Color.Yellow, value: 3 }] },
+            { id: "ARCS_F0107", agents: [{ color: Color.Blue, value: 2 }] },
+            { id: "ARCS_F0108", agents: [{ color: Color.White, value: 1 }] }
         ],
         edicts: [],
         laws: [""]
@@ -110,7 +218,28 @@ export const initialData: GameData = {
 
 export function useGameData() {
     const [data, setData] = useState(mockData);
+    const [_, setIsPreloading] = useState(false);
+    const { preloadFromData } = useImagePreloader();
 
+    
+    // Preload images when data changes
+    useEffect(() => {
+        async function preloadGameImages(gameData: GameData) {
+            setIsPreloading(true);
+            try {
+                const imagesToPreload = extractImagesFromGameData(gameData);
+                await preloadFromData(imagesToPreload);
+                console.log('Preloaded images for game state:', imagesToPreload);
+            } catch (error) {
+                console.error('Failed to preload images:', error);
+            } finally {
+                setIsPreloading(false);
+            }
+        }
+
+        // Preload images for the current data
+        preloadGameImages(data);
+    }, [data, preloadFromData]);
 
     useEffect(() => {
         window.Twitch.ext.listen(
