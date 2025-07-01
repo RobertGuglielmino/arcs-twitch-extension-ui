@@ -10,7 +10,7 @@ interface CourtCardGridProps {
 export default function CourtCardGrid({ cards }: CourtCardGridProps) {
     
     const { getImageSrc: appImages } = useImageBus("APP_IMAGES");
-    const { getImageSrc: campaignImages } = useImageBus("CAMPAIGN_IMAGES");
+    const { getImageSrc: courtImages } = useImageBus("COURT_IMAGES");
 
     return (
         <BackgroundImage className="m-2 max-h-full" imageClassName="rounded-sm object-cover" imageSrc={appImages("background")}>
@@ -30,7 +30,7 @@ export default function CourtCardGrid({ cards }: CourtCardGridProps) {
                     </div>
                     <img
                     key={i}
-                    src={campaignImages(card.id)}
+                    src={courtImages(card.id)}
                     className="flex-shrink min-w-0 max-h-full object-contain" />
                     </div>) : <div  className="font-body text-2xl text-white">No cards here!</div>}
             </div>

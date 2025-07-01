@@ -9,9 +9,9 @@ interface EdictsProps {
 
 export default function Edicts({ cards }: EdictsProps) {
     const [hover, setHover] = useState(false);
-    const { getImageSrc: courtImages } = useImageBus("COURT_IMAGES");
+    const { getImageSrc: edictImages } = useImageBus("EDICT_IMAGES");
 
-    const edictCardsParsed = cards.map(card => courtImages(card));
+    const edictCardsParsed = cards.map(card => edictImages(card));
 
     return (<div
         onMouseEnter={() => setHover(true)}

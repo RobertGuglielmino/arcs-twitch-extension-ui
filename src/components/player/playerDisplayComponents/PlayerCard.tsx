@@ -1,6 +1,4 @@
-
-import type { Color } from "@/components/enums/Colors";
-import type { RESOURCES } from "@/components/enums/Resources";
+import { Color } from "@robertguglielmino/arcs-types";
 import BackgroundImage from "../../generic/BackgroundImage";
 import HoverGrid from "../../generic/HoverGrid";
 import ObjectiveIcon from "../../icons/ObjectiveIcon";
@@ -12,10 +10,11 @@ import PlayerBoardDisplay from "../playerBoard/PlayerBoardDisplay";
 import { getColor } from "@/utils/getColor";
 import { getTextColor } from "@/utils/getTextColor";
 import { GAME_IMAGES } from "@/assets/game";
-// import { FATES_IMAGES } from "@/assets/campaign/fates";
 import { useImageBus } from "@/stores/imageStore";
-import { useEffect } from "react";
+import { fateIdToName } from "@/utils/fateData";
+import type { RESOURCES } from "@robertguglielmino/arcs-types";
 
+type FlagshipSpot = "city" | "starport" | "";
 interface PlayerCardProps {
     playerName: string,
     fate: string,
@@ -28,25 +27,22 @@ interface PlayerCardProps {
     objectiveScore: number,
     power: number,
     courtCards: string[],
+    hasFlagship: boolean, 
+    flagshipBoard?: FlagshipSpot[],
     titles?: string[],
 }
 
-export default function PlayerCard({ playerName, fate, color, tyrant, warlord, resources, cities, outrage, objectiveScore, power, courtCards, titles = [] }: PlayerCardProps) {
-    const { getImageSrc, isImageLoaded, isImageLoading } = useImageBus('GAME_IMAGES');
+
+
+export default function PlayerCard({ playerName, fate, color, tyrant, warlord, resources, cities, outrage, objectiveScore, power, courtCards, hasFlagship, flagshipBoard = [], titles = [] }: PlayerCardProps) {
+    const { getImageSrc: getGameImage } = useImageBus('GAME_IMAGES');
     const { getImageSrc: getCampaignImage } = useImageBus('CAMPAIGN_IMAGES');
+    const { getImageSrc: getCourtImage } = useImageBus('COURT_IMAGES');
     const { getImageSrc: getAppImage } = useImageBus('APP_IMAGES');
-    const courtCardsParsed = courtCards;//.map(card => COURT_IMAGES[card as keyof typeof COURT_IMAGES]);
+    const { getImageSrc: getFateImages } = useImageBus('FATES_IMAGES');
+    const courtCardsParsed = courtCards.map(card => getCourtImage(card));
     const bgColor = getColor(color);
     const textColor = getTextColor(color);
-
-    // Debug logging
-    useEffect(() => {
-        console.log('PlayerCard mounted');
-        console.log('Board image loaded:', isImageLoaded('board'));
-        console.log('Board image loading:', isImageLoading('board'));
-        console.log('Board image src:', getImageSrc('board'));
-    }, [isImageLoaded, isImageLoading, getImageSrc]);
-
 
 
     return (
@@ -57,7 +53,7 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
                 <div className={`flex flex-row h-full justify-between font-header top-0 gap-1`}>
                     <div className="w-30 max-w-30">
                         <BackgroundImage
-                            imageSrc={fate}
+                            imageSrc={getFateImages(fate)}
                             imageClassName="object-cover object-top "
                             className="overflow-y-hidden h-full">
                             <div className="flex flex-col items-center h-full justify-end pb-2">
@@ -65,7 +61,7 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
                                     {playerName}
                                 </div>
                                 <div className={`text-xs rounded h-auto flex flex-col items-center justify-center w-auto mx-1 text-white `}>
-                                    fate
+                                   {fateIdToName(fate)}
                                 </div>
                             </div>
                         </BackgroundImage>
@@ -77,7 +73,7 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
                     <div className="flex flex-col shrink justify-around m-1">
                         <PlayerHoverIcon imageSrc={GAME_IMAGES.material} >
                             <PlayerBoardDisplay 
-                                playerBoard={getImageSrc('board')} 
+                                playerBoard={getGameImage('board')} 
                                 resources={resources} 
                                 cities={cities} 
                                 outrage={outrage} 
@@ -86,10 +82,10 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
                                 color={color} 
                             />
                         </PlayerHoverIcon>
-                        <PlayerHoverIcon imageSrc={getCampaignImage("flagship")}>
-                            <FlagshipBoardDisplay color={color} />
-                        </PlayerHoverIcon>
-                        <PlayerHoverIcon imageSrc={getImageSrc("cardBackSideways")} >
+                        {hasFlagship && <PlayerHoverIcon imageSrc={getCampaignImage("flagship")}>
+                            <FlagshipBoardDisplay flagshipBoard={flagshipBoard} color={color} />
+                        </PlayerHoverIcon>}
+                        <PlayerHoverIcon imageSrc={getGameImage("cardBackSideways")} >
                             <HoverGrid cards={courtCardsParsed} />
                         </PlayerHoverIcon>
                     </div>

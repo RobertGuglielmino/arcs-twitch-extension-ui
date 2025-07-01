@@ -1,11 +1,9 @@
-import { Fates } from "@/components/enums/Fates";
-import type { GameData } from "@robertguglielmino/arcs-types";
-import { RESOURCES } from "@/components/enums/Resources";
-import { TITLES } from "@/components/enums/Titles";
+
+import { Fates, RESOURCES, TITLES, type GameData } from "@robertguglielmino/arcs-types";
 import pako from "pako";
 import { useEffect, useState } from "react";
-import { Color } from "@/components/enums/Colors";
 import { useImagePreloader } from "@/stores/imageStore";
+import { Color } from "@robertguglielmino/arcs-types";
 
 
 function extractImagesFromGameData(data: GameData) {
@@ -143,11 +141,12 @@ const mockData: GameData = {
             keeper: [0, 0, 0, 0, 0],
             empath: [0, 0, 0, 0, 0],
         },
-        flagship: [
+        hasFlagship: [true, false, true, true],
+        flagshipBoard: [
             ["city", "starport", "starport", "city", "city", "starport", "starport", "city", "city", "starport", "starport", "city"],
             ["city", "starport", "starport", "city", "city", "starport", "starport", "city", "city", "starport", "starport", "city"],
-            ["city", "starport", "starport", "city", "city", "starport", "starport", "city", "city", "starport", "starport", "city"],
-            ["city", "starport", "starport", "city", "city", "starport", "starport", "city", "city", "starport", "starport", "city"]
+            ["city", "", "starport", "city", "", "", "starport", "", "city", "starport", "", "city"],
+            ["", "", "", "", "", "", "", "", "", "", "", ""]
         ],
         titles: [
             [TITLES.FirstRegent, TITLES.LordCluster1],
@@ -160,12 +159,13 @@ const mockData: GameData = {
         isCampaign: true,
         ambitionDeclarations: [],
         courtCards: [
+            { id: "ARCS_AID01A", agents: [{ color: Color.Red, value: 4 }, { color: Color.Yellow, value: 4 }, { color: Color.Blue, value: 4 }] },
             { id: "ARCS_F0105", agents: [{ color: Color.Red, value: 4 }] },
             { id: "ARCS_F0106", agents: [{ color: Color.Yellow, value: 3 }] },
             { id: "ARCS_F0107", agents: [{ color: Color.Blue, value: 2 }] },
-            { id: "ARCS_F0108", agents: [{ color: Color.White, value: 1 }] }
+            { id: "ARCS_F0107", agents: [{ color: Color.White, value: 1 }] }
         ],
-        edicts: [],
+        edicts: ["ARCS_AID03", "ARCS_F113", "ARCS_F215", "ARCS_F521"],
         laws: [""]
     }
 }
@@ -198,7 +198,8 @@ export const initialData: GameData = {
             keeper: [0, 0, 0, 0, 0],
             empath: [0, 0, 0, 0, 0]
         },
-        flagship: [
+        hasFlagship: [false, false, false, false],
+        flagshipBoard: [
         ],
         titles: [
             [],
@@ -221,7 +222,6 @@ export function useGameData() {
     const [_, setIsPreloading] = useState(false);
     const { preloadFromData } = useImagePreloader();
 
-    
     // Preload images when data changes
     useEffect(() => {
         async function preloadGameImages(gameData: GameData) {
@@ -229,7 +229,6 @@ export function useGameData() {
             try {
                 const imagesToPreload = extractImagesFromGameData(gameData);
                 await preloadFromData(imagesToPreload);
-                console.log('Preloaded images for game state:', imagesToPreload);
             } catch (error) {
                 console.error('Failed to preload images:', error);
             } finally {

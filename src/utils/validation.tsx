@@ -17,11 +17,8 @@ export const gameDataSchema = z.object({
       agents: z.array(z.number()),
       favors: z.array(z.array(z.number()))
     }),
-    flagship: z.object({
-      tactics: z.array(z.number()),
-      fleet: z.array(z.number()),
-      strategy: z.array(z.number())
-    }),
+    hasFlagship: z.array(z.boolean()),
+    flagshipBoard: z.array(z.string()),
     ambitionProgress: z.object({
       tycoon: z.array(z.number()),
       tyrant: z.array(z.number()),
@@ -38,11 +35,11 @@ export const gameDataSchema = z.object({
     isCampaign: z.boolean(),
     ambitionDeclarations: z.array(z.array(z.boolean())),
     courtCards: z.object({
-        id: z.string(),
-        agents: z.object({
-            color: z.string(),
-            value: z.number()
-        })
+      id: z.string(),
+      agents: z.object({
+        color: z.string(),
+        value: z.number()
+      })
     }),
     edicts: z.array(z.string()),
     laws: z.array(z.string())

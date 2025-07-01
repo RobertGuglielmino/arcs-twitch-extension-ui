@@ -1,10 +1,10 @@
 
 import { PositionedImages, type PositionedImage } from "@/components/generic/PositionedImages";
-import { Color } from "@/components/enums/Colors";
-import type { RESOURCES } from "@/components/enums/Resources";
+import { Color } from "@robertguglielmino/arcs-types";
 import { getColor } from "@/utils/getColor";
 import { GAME_IMAGES } from "@/assets/game";
 import { useImageBus } from "@/stores/imageStore";
+import type { RESOURCES } from "@robertguglielmino/arcs-types";
 
 interface PlayerBoardDisplayProps {
   playerBoard: string,

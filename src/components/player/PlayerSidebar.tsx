@@ -1,21 +1,17 @@
-import type { PlayerData } from "../enums/GameData";
 import PlayerCard from "./playerDisplayComponents/PlayerCard";
-import { Color } from "../enums/Colors";
-import { useImageBus } from "@/stores/imageStore";
+import type { PlayerData } from "@robertguglielmino/arcs-types";
+import { Color } from "@robertguglielmino/arcs-types";
 
 interface PlayerSidebarProps {
     data: PlayerData
 }
 
 export default function PlayerSidebar({ data }: PlayerSidebarProps) {
-    const { getImageSrc } = useImageBus('FATES_IMAGES');
-    console.log(data.fate);
-
     return (<div className="flex flex-col items-center justify-center h-1/3 fixed left-0 top-1/2 transform -translate-y-1/2">
         {data.name.map((_, index) => <PlayerCard
             key={data.name[index]}
             playerName={data.name[index]}
-            fate={getImageSrc(data.fate[index])}
+            fate={data.fate[index]}
             color={getColorFromString(data.color[index])}
             objectiveScore={data.objectiveProgress[index]}
             cities={data.supply.cities[index]}
@@ -25,7 +21,8 @@ export default function PlayerSidebar({ data }: PlayerSidebarProps) {
             courtCards={data.courtCards[index]}
             tyrant={data.ambitionProgress.tyrant[index]}
             warlord={data.ambitionProgress.warlord[index]}
-            // flagships={data.flagships[index]}
+            hasFlagship={data.hasFlagship[index]}
+            flagshipBoard={data.flagshipBoard[index]}
             titles={data.titles[index]}
             />)}
     </div>);

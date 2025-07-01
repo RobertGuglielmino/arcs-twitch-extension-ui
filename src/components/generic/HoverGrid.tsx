@@ -1,4 +1,3 @@
-import { useImageBus } from "@/stores/imageStore";
 import BackgroundImage from "./BackgroundImage";
 import { APP_IMAGES } from "@/assets/app";
 
@@ -7,15 +6,13 @@ interface HoverGridProps {
 }
 
 export default function HoverGrid({ cards }: HoverGridProps) {
-    const { getImageSrc: getCourtImage } = useImageBus('COURT_IMAGES');
 
-    console.log(JSON.stringify(cards));
     return (
         <BackgroundImage className="m-2 max-h-full" imageClassName="rounded-sm object-cover" imageSrc={APP_IMAGES.background}>
             <div className="flex flex-wrap justify-center w-auto h-full gap-2 p-2 overflow-hidden">
                 {cards.length > 0 ? cards.map((card, i) => <img
                     key={i}
-                    src={getCourtImage(card)}
+                    src={card}
                     style={{
                         width: `calc((100% - ${(cards.length - 1) * 0.5}rem) / ${Math.min(cards.length, 4)})`,
                         maxWidth: '150px'

@@ -1,18 +1,17 @@
-import flagshipBoard from "/src/assets/campaign/flagship-board.webp"
-import { Color } from "@/components/enums/Colors";
+
 import { PositionedImages } from "@/components/generic/PositionedImages";
 import { useImageBus } from "@/stores/imageStore";
-import { useState } from "react";
+import { Color } from "@robertguglielmino/arcs-types";
 
 
 type FlagshipInput = ('city' | 'starport' | '')[];
 
 interface FlagshipBoardDisplayProps {
-    color: Color
+    color: Color,
+    flagshipBoard: FlagshipInput
 }
 
-export default function FlagshipBoardDisplay({ color }: FlagshipBoardDisplayProps) {
-    const [flagshipInput, _] = useState<FlagshipInput>(['city', 'starport', 'starport', 'city', 'city', 'starport', 'starport', 'city', 'city', 'starport', 'starport', 'city']);
+export default function FlagshipBoardDisplay({ color, flagshipBoard }: FlagshipBoardDisplayProps) {
     const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
 
     const FLAGSHIP_CONFIG = {
@@ -34,7 +33,7 @@ export default function FlagshipBoardDisplay({ color }: FlagshipBoardDisplayProp
         images: getColorImages(color)
     };
 
-    const foregroundImages = flagshipInput
+    const foregroundImages = flagshipBoard
             .map((flagshipType, index) => {
                 if (!flagshipType || index >= FLAGSHIP_CONFIG.positions.length) return null;
 

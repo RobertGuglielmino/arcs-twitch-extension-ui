@@ -15,8 +15,8 @@ import arcs_cc12 from './ARCS-CC12.webp';
 import arcs_cc13 from './ARCS-CC13.webp';
 import arcs_cc14 from './ARCS-CC14.webp';
 import arcs_cc15 from './ARCS-CC15.webp';
-import council_decided from './council_decided.webp';
-import council_in_session from './council_in_session.webp';
+import ARCS_AID01A from './council_in_session.webp'; // council in session
+import ARCS_AID01B from './council_decided.webp'; // council decided
 import ARCS_F0102 from './ARCS-F0102.webp';
 import ARCS_F0103 from './ARCS-F0103.webp';
 import ARCS_F0105 from './ARCS-F0105.webp';
@@ -202,8 +202,8 @@ export const COURT_IMAGES = {
   arcs_cc13,
   arcs_cc14,
   arcs_cc15,
-  council_decided, 
-  council_in_session, 
+  ARCS_AID01A, 
+  ARCS_AID01B, 
   ARCS_F0102,
   ARCS_F0103,
   ARCS_F0105,
