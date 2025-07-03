@@ -1,5 +1,5 @@
 
-import { Fates, RESOURCES, TITLES, type GameData } from "@robertguglielmino/arcs-types";
+import { AMBITION_MARKERS, Fates, RESOURCES, TITLES, type GameData } from "@robertguglielmino/arcs-types";
 import pako from "pako";
 import { useEffect, useState } from "react";
 import { useImagePreloader } from "@/stores/imageStore";
@@ -157,7 +157,22 @@ const mockData: GameData = {
     },
     gameData: {
         isCampaign: true,
-        ambitionDeclarations: [],
+        ambitionDeclarations: {
+            tycoon: [AMBITION_MARKERS.FirstGold],
+            tyrant: [],
+            warlord: [AMBITION_MARKERS.SecondGold, AMBITION_MARKERS.ThirdSilver],
+            keeper: [],
+            empath: [],
+        },
+        hasBlightkin: false,
+        hasEdenguard: false,
+        ambitionPodium: {
+            tycoon: [[1], [2]],
+            tyrant: [[0], []],
+            warlord: [[], [0, 1, 2]],
+            keeper: [[1], [2]],
+            empath: [[1], [2]],
+        },
         courtCards: [
             { id: "ARCS_AID01A", agents: [{ color: Color.Red, value: 4 }, { color: Color.Yellow, value: 4 }, { color: Color.Blue, value: 4 }] },
             { id: "ARCS_F0105", agents: [{ color: Color.Red, value: 4 }] },
@@ -196,7 +211,10 @@ export const initialData: GameData = {
             tyrant: [0, 0, 0, 0, 0],
             warlord: [0, 0, 0, 0, 0],
             keeper: [0, 0, 0, 0, 0],
-            empath: [0, 0, 0, 0, 0]
+            empath: [0, 0, 0, 0, 0],
+            
+            blightkin: [0, 0, 0, 0, 0],
+            edenguard: [0, 0, 0, 0, 0],
         },
         hasFlagship: [false, false, false, false],
         flagshipBoard: [
@@ -210,7 +228,22 @@ export const initialData: GameData = {
     },
     gameData: {
         isCampaign: true,
-        ambitionDeclarations: [[""]],
+        hasBlightkin: false,
+        hasEdenguard: false,
+        ambitionPodium: {
+            tycoon: [[], []],
+            tyrant: [[], []],
+            warlord: [[], []],
+            keeper: [[], []],
+            empath: [[], []],
+        },
+        ambitionDeclarations: {
+            tycoon: [],
+            tyrant: [],
+            warlord: [],
+            keeper: [],
+            empath: [],
+        },
         courtCards: [],
         edicts: [],
         laws: [""]

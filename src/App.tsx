@@ -10,19 +10,25 @@ import { CAMPAIGN_IMAGES } from './assets/campaign';
 import { COURT_IMAGES } from './assets/campaign/court';
 import { EDICT_IMAGES } from './assets/campaign/edicts';
 import { LAW_IMAGES } from './assets/campaign/laws';
-import { FATES_IMAGES } from './assets/campaign/fates';
+// import { FATES_IMAGES } from './assets/campaign/fates';
+import { useMemo } from 'react';
 
 // In your App component (add this once):
-const imageConfig = { APP_IMAGES, GAME_IMAGES, CAMPAIGN_IMAGES, COURT_IMAGES, EDICT_IMAGES, LAW_IMAGES, FATES_IMAGES };
+const imageConfig = { APP_IMAGES, GAME_IMAGES, CAMPAIGN_IMAGES, COURT_IMAGES, EDICT_IMAGES, LAW_IMAGES, FATES_IMAGES: {} };
 initializeImageStore(imageConfig);
 
 function App() {
   const data: GameData = useGameData();
 
+  const players = useMemo(() =>({
+    name: data.playerData.name,
+    color: data.playerData.color
+  }), [data.playerData.name, data.playerData.color]);
+
   return (
     <>
       <div className="h-screen w-full">
-        <GameInfoTab data={data.gameData}/>
+        <GameInfoTab data={data.gameData} players={players}/>
         <PlayerSidebar data={data.playerData}/>
       </div>
     </>
