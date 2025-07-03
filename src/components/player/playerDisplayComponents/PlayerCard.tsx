@@ -44,6 +44,8 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
     const bgColor = getColor(color);
     const textColor = getTextColor(color);
 
+    
+
 
     return (
         <div className={`flex flex-col justify-center w-full max-w-61`}>

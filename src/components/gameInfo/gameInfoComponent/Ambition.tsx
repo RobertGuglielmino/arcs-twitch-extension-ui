@@ -1,5 +1,5 @@
+import { AMBITION_MARKERS } from "@robertguglielmino/arcs-types";
 import BackgroundImage from "../../generic/BackgroundImage";
-import { AmbitionMarkers } from "../../enums/AmbitionMarkers";
 import { useImageBus } from "@/stores/imageStore";
 
 interface AmbitionProps {
@@ -8,7 +8,7 @@ interface AmbitionProps {
         name: string,
         color: string
     }[][],
-    declaredAmbitions: AmbitionMarkers[]
+    declaredAmbitions: AMBITION_MARKERS[]
 }
 
 export default function Ambition({ ambition, podium, declaredAmbitions }: AmbitionProps) {
@@ -17,16 +17,16 @@ export default function Ambition({ ambition, podium, declaredAmbitions }: Ambiti
     return (
         <div className="flex h-24 justify-end">
             <div className={`flex flex-col h-full max-h-24 justify-center`}>
-                {declaredAmbitions.includes(AmbitionMarkers.First_Gold) && <img src={gameImages("firstGold")} className="h-9 object-contain" />}
-                {declaredAmbitions.includes(AmbitionMarkers.First_Silver) && <img src={gameImages("firstSilver")} className="h-9 object-contain" />}
-                {declaredAmbitions.includes(AmbitionMarkers.Second_Gold) && <img src={gameImages("secondGold")} className="h-9 object-contain" />}
-                {declaredAmbitions.includes(AmbitionMarkers.Second_Silver) && <img src={gameImages("secondSilver")} className="h-9 object-contain" />}
-                {declaredAmbitions.includes(AmbitionMarkers.Third_Gold) && <img src={gameImages("thirdGold")} className="h-9 object-contain" />}
-                {declaredAmbitions.includes(AmbitionMarkers.Third_Silver) && <img src={gameImages("thirdSilver")} className="h-9 object-contain" />}
+                {declaredAmbitions.includes(AMBITION_MARKERS.FirstGold) && <img src={gameImages("firstGold")} className="h-9 object-contain" />}
+                {declaredAmbitions.includes(AMBITION_MARKERS.FirstSilver) && <img src={gameImages("firstSilver")} className="h-9 object-contain" />}
+                {declaredAmbitions.includes(AMBITION_MARKERS.SecondGold) && <img src={gameImages("secondGold")} className="h-9 object-contain" />}
+                {declaredAmbitions.includes(AMBITION_MARKERS.SecondSilver) && <img src={gameImages("secondSilver")} className="h-9 object-contain" />}
+                {declaredAmbitions.includes(AMBITION_MARKERS.ThirdGold) && <img src={gameImages("thirdGold")} className="h-9 object-contain" />}
+                {declaredAmbitions.includes(AMBITION_MARKERS.ThirdSilver) && <img src={gameImages("thirdSilver")} className="h-9 object-contain" />}
                 {declaredAmbitions.length == 0 && <img src={gameImages("thirdSilver")} className="h-8 m-1 opacity-0 object-contain" />}
             </div>
             <div className={`w-full font-header `}>
-                <BackgroundImage className="w-full h-full" imageClassName={`object-contain object-right ${declaredAmbitions.length == 0 ? "brightness-40" : ""}`} imageSrc={ambition}>
+                <BackgroundImage className="w-full h-full" imageClassName={`object-contain object-right ${declaredAmbitions.length === 0 ? "brightness-40" : "brightness-100"}`} imageSrc={ambition}>
                     <div className="flex justify-end h-full">
                         <div className="max-h-auto h-auto w-1/4 max-w-1/4 m-1 mb-2 flex flex-col grow justify-end">
                             <div className="w-auto h-full flex flex-col justify-center items-center">

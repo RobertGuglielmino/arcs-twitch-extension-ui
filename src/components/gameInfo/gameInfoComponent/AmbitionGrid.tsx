@@ -1,62 +1,113 @@
 import Ambition from "./Ambition";
-import { AmbitionMarkers } from "@/components/enums/AmbitionMarkers";
-import { Ambitions } from "@/components/enums/Ambitions";
 import { useImageBus } from "@/stores/imageStore";
+import { getColor } from "@/utils/getColor";
+import { AMBITIONS } from "@robertguglielmino/arcs-types";
 
 interface AmbitionGridProps {
-
+    declaredAmbitions: {
+        tycoon: string[],
+        tyrant: string[],
+        warlord: string[],
+        keeper: string[],
+        empath: string[],
+        edenguard?: string[],
+        blightkin?: string[]
+    },
+    players: any,
+    ambitionProgress: {
+        tycoon: number[][],
+        tyrant: number[][],
+        warlord: number[][],
+        keeper: number[][],
+        empath: number[][],
+    },
+    blightkinActive: boolean,
+    edenguardActive: boolean
 }
 
-export default function AmbitionGrid({ }: AmbitionGridProps) {
+export default function AmbitionGrid({ declaredAmbitions, players, ambitionProgress, blightkinActive, edenguardActive }: AmbitionGridProps) {
     const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
+    let AMBITION_DATA = [];
 
-    const AMBITIONS_DATA = [
+    console.log(ambitionProgress.tycoon);
+    console.log(JSON.stringify(players));
+    console.log(JSON.stringify(ambitionProgress.tycoon.map(position =>
+        position.map(player => ({
+            color: getColor(players.color[player]),
+            name: players.name[player]
+        }))
+    )));
+
+    ambitionProgress.tycoon.map(position =>
+        position.map(player => ({
+            color: players.color[player],
+            name: players.name[player]
+        }))
+    )
+
+    if (edenguardActive) AMBITION_DATA.push({
+        type: AMBITIONS.Edenguard,
+        imageSrc: gameImages("edenguard"),
+        podium: ambitionProgress.tycoon.map((_, index) => {
+            return [{ color: players.color[index], name: players.name[index] }]
+        }), //[[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
+        declaredAmbitions: declaredAmbitions.edenguard
+    });
+
+    function getPodium(ambition: string) {
+        return ambitionProgress[ambition].map(position =>
+            position.map(player => ({
+                color: getColor(players.color[player]),
+                name: players.name[player]
+            }))
+        )
+    }
+
+    const BASE_AMBITION_DATA = [
         {
-            type: Ambitions.Blightkin,
-            imageSrc: gameImages("blightkin"),
-            podium: [[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
-            declaredAmbitions: [AmbitionMarkers.First_Gold]
-        },
-        {
-            type: Ambitions.Tycoon,
+            type: AMBITIONS.Tycoon,
             imageSrc: gameImages("tycoon"),
-            podium: [[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
-            declaredAmbitions: [AmbitionMarkers.First_Gold]
+            podium: getPodium("tycoon"),
+            declaredAmbitions: declaredAmbitions.tycoon
         },
         {
-            type: Ambitions.Tyrant,
+            type: AMBITIONS.Tyrant,
             imageSrc: gameImages("tyrant"),
-            podium: [[{ color: "bg-player-red", name: "darrell" }], []],
-            declaredAmbitions: [AmbitionMarkers.Second_Gold]
+            podium: getPodium("tyrant"),
+            declaredAmbitions: declaredAmbitions.tyrant
         },
         {
-            type: Ambitions.Warlord,
+            type: AMBITIONS.Warlord,
             imageSrc: gameImages("warlord"),
-            podium: [[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
-            declaredAmbitions: []
+            podium: getPodium("warlord"),
+            declaredAmbitions: declaredAmbitions.warlord
         },
         {
-            type: Ambitions.Keeper,
+            type: AMBITIONS.Keeper,
             imageSrc: gameImages("keeper"),
             podium: [[], [{ color: "bg-player-blue", name: "hunter" }, { color: "bg-player-white", name: "matt" }, { color: "bg-player-yellow", name: "matt" }, { color: "bg-player-red", name: "matt" }]],
-            declaredAmbitions: [AmbitionMarkers.Third_Silver]
+            declaredAmbitions: declaredAmbitions.keeper
         },
         {
-            type: Ambitions.Empath,
+            type: AMBITIONS.Empath,
             imageSrc: gameImages("empath"),
             podium: [[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
-            declaredAmbitions: []
+            declaredAmbitions: declaredAmbitions.empath
         },
-        {
-            type: Ambitions.Edenguard,
-            imageSrc: gameImages("edenguard"),
-            podium: [[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
-            declaredAmbitions: []
-        }
     ]
 
+    AMBITION_DATA.push(...BASE_AMBITION_DATA);
+
+    if (blightkinActive) AMBITION_DATA.push({
+        type: AMBITIONS.Blightkin,
+        imageSrc: gameImages("blightkin"),
+        podium: [[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
+        declaredAmbitions: declaredAmbitions.blightkin
+    });
+
+
     return (<div className="w-full">
-        {AMBITIONS_DATA.map(ambition => (<Ambition
+        {AMBITION_DATA.map(ambition => (<Ambition
             key={ambition.type}
             ambition={ambition.imageSrc}
             podium={ambition.podium}

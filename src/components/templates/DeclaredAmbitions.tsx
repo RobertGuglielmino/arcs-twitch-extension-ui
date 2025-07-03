@@ -1,12 +1,12 @@
-import { AmbitionMarkers } from "../enums/AmbitionMarkers";
+import type { AMBITION_MARKERS } from "@robertguglielmino/arcs-types";
 
 interface DeclaredAmbitionsProps {
-    ambitionMarkers: AmbitionMarkers[];
+    ambitionMarkers: AMBITION_MARKERS[];
 }
 
 function DeclaredAmbitions({ambitionMarkers}: DeclaredAmbitionsProps) {
 
-    function getAmbition(ambition: AmbitionMarkers) {
+    function getAmbition(ambition: AMBITION_MARKERS) {
         switch (ambition) {
             // case Ambitions.Material:
             //     return "/ambitions/ambition1.png";

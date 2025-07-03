@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: "FMBolyarPro-700";
-  src: url("/src/assets/app/FMBolyarPro-700.ttf") format("truetype");
+  src: url("./assets/app/FMBolyarPro-700.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "NeueKabelW01-Book";
-  src: url("/src/assets/app/NeueKabelW01-Book.ttf") format("truetype");
+  src: url("./assets/app/NeueKabelW01-Book.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

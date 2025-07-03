@@ -1,5 +1,5 @@
 import { getColor } from "@/utils/getColor";
-import { Color } from "../enums/Colors";
+import type { Color } from "@robertguglielmino/arcs-types";
 
 interface PlayerProgressMarkerProps {
   color: Color;

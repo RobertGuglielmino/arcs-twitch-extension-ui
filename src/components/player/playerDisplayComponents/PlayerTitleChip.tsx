@@ -1,4 +1,5 @@
-import { TITLES } from "../../enums/Titles";
+import { TITLES } from "@robertguglielmino/arcs-types";
+
 
 interface PlayerTitleChipProps {
     title: string
