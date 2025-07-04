@@ -6,7 +6,7 @@ export const gameDataSchema = z.object({
     fate: z.array(z.string()),
     color: z.array(z.string()),
     power: z.array(z.number()),
-    objectiveProgress: z.array(z.string()),
+    objectiveProgress: z.array(z.number()),
     resources: z.array(z.array(z.string())),
     outrage: z.array(z.array(z.boolean())),
     courtCards: z.array(z.array(z.string())),
@@ -33,7 +33,28 @@ export const gameDataSchema = z.object({
   }),
   generalData: z.object({
     isCampaign: z.boolean(),
-    ambitionDeclarations: z.array(z.array(z.boolean())),
+    ambitionDeclarations: z.object({
+      tycoon: z.array(z.string()),
+      tyrant: z.array(z.string()),
+      warlord: z.array(z.string()),
+      keeper: z.array(z.string()),
+      empath: z.array(z.string()),
+
+      blightkin: z.array(z.string()),
+      edenguard: z.array(z.string()),
+    }),
+    ambitionPodium: z.object({
+      tycoon: z.array(z.array(z.number())),
+      tyrant: z.array(z.array(z.number())),
+      warlord: z.array(z.array(z.number())),
+      keeper: z.array(z.array(z.number())),
+      empath: z.array(z.array(z.number())),
+
+      blightkin: z.array(z.array(z.number())),
+      edenguard: z.array(z.array(z.number())),
+    }),
+    hasEdengiard: z.boolean(),
+    hasBlightkin: z.boolean(),
     courtCards: z.object({
       id: z.string(),
       agents: z.object({
