@@ -2,12 +2,12 @@
 import { PositionedImages, type PositionedImage } from "@/components/generic/PositionedImages";
 import { Color } from "@robertguglielmino/arcs-types";
 import { getColor } from "@/utils/getColor";
-import { GAME_IMAGES } from "@/assets/game";
-import { useImageBus } from "@/stores/imageStore";
 import type { RESOURCES } from "@robertguglielmino/arcs-types";
 
 interface PlayerBoardDisplayProps {
   playerBoard: string,
+  cityConfig: any,
+  resourceConfig: any,
   resources: RESOURCES[],
   cities: number,
   outrage: boolean[],
@@ -16,51 +16,19 @@ interface PlayerBoardDisplayProps {
   color: Color
 }
 
-export default function PlayerBoardDisplay({ playerBoard, resources, cities, outrage, trophies, captives, color }: PlayerBoardDisplayProps) {
-  const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
-
-  const RESOURCE_CONFIG = {
-    positions: [
-      { top: 25, left: 9.6 },
-      { top: 25, left: 21.25 },
-      { top: 25, left: 32.9 },
-      { top: 25, left: 44.55 },
-      { top: 25, left: 56.2 },
-      { top: 25, left: 67.85 }
-    ],
-    size: { width: 11 },
-    images: {
-      "material": GAME_IMAGES.material,
-      "fuel": GAME_IMAGES.fuel,
-      "weapons": GAME_IMAGES.weapons,
-      "relic": GAME_IMAGES.relic,
-      "psionics": GAME_IMAGES.psionics,
-    }
-  };
-
-  const CITY_CONFIG = {
-    positions: [
-      { top: 22.5, left: 91 },
-      { top: 22.5, left: 79.4 },
-      { top: 22.5, left: 61.9 },
-      { top: 22.5, left: 44.5 },
-      { top: 22.5, left: 33 }
-    ],
-    size: { width: 9 },
-    image: getColorImages(color)
-  };
+export default function PlayerBoardDisplay({ playerBoard, cityConfig, resourceConfig, resources, cities, outrage, trophies, captives, color }: PlayerBoardDisplayProps) {
 
   function generateResourcesImages(resourcesInput: RESOURCES[]): any[] {
     return resourcesInput
       .map((resourcesType, index) => {
-        if (!resourcesType || index >= RESOURCE_CONFIG.positions.length) return null;
+        if (!resourcesType || index >= resourceConfig.positions.length) return null;
 
         return {
           id: `resource-${index}`,
-          src: RESOURCE_CONFIG.images[resourcesType as keyof typeof RESOURCE_CONFIG.images],
+          src: resourceConfig.images[resourcesType as keyof typeof resourceConfig.images],
           alt: `Resource ${resourcesType} at position ${index + 1}`,
-          position: RESOURCE_CONFIG.positions[index],
-          size: RESOURCE_CONFIG.size,
+          position: resourceConfig.positions[index],
+          size: resourceConfig.size,
         };
       })
       .filter((item): item is any => item !== null);
@@ -71,10 +39,10 @@ export default function PlayerBoardDisplay({ playerBoard, resources, cities, out
 
     return Array.from({ length: clampedCount }, (_, index) => ({
       id: `city-${index}`,
-      src: CITY_CONFIG.image,
+      src: cityConfig.image,
       alt: `City ${index + 1}`,
-      position: CITY_CONFIG.positions[index],
-      size: CITY_CONFIG.size,
+      position: cityConfig.positions[index],
+      size: cityConfig.size,
     }));
   }
 
@@ -114,20 +82,6 @@ export default function PlayerBoardDisplay({ playerBoard, resources, cities, out
     return [...outrageComponents, ...values];
   }
 
-  function getColorImages(color: Color) {
-    switch (color) {
-      case Color.Blue:
-        return gameImages("city_blue");
-      case Color.Red:
-        return gameImages("city_red");
-      case Color.Yellow:
-        return gameImages("city_yellow");
-      case Color.White:
-        return gameImages("city_white");
-      default:
-        return gameImages("city_free");
-    }
-  }
 
   const bgColor = getColor(color);
 

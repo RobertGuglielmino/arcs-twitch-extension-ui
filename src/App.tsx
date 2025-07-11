@@ -12,9 +12,10 @@ import { EDICT_IMAGES } from './assets/campaign/edicts';
 import { LAW_IMAGES } from './assets/campaign/laws';
 // import { FATES_IMAGES } from './assets/campaign/fates';
 import { useMemo } from 'react';
+import { FATES_IMAGES } from './assets/campaign/fates';
 
 // In your App component (add this once):
-const imageConfig = { APP_IMAGES, GAME_IMAGES, CAMPAIGN_IMAGES, COURT_IMAGES, EDICT_IMAGES, LAW_IMAGES, FATES_IMAGES: {} };
+const imageConfig = { APP_IMAGES, GAME_IMAGES, CAMPAIGN_IMAGES, COURT_IMAGES, EDICT_IMAGES, LAW_IMAGES, FATES_IMAGES };
 initializeImageStore(imageConfig);
 
 function App() {

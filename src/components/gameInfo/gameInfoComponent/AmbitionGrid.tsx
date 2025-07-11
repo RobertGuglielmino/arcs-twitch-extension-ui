@@ -3,6 +3,23 @@ import { useImageBus } from "@/stores/imageStore";
 import { getColor } from "@/utils/getColor";
 import { AMBITIONS } from "@robertguglielmino/arcs-types";
 
+interface AmbitionProgressType {
+    tycoon: number[][],
+    tyrant: number[][],
+    warlord: number[][],
+    keeper: number[][],
+    empath: number[][],
+}
+
+interface AmbitionType {
+    type: AMBITIONS;
+    imageSrc: string;
+    podium: {
+        color: any;
+        name: any;
+    }[][];
+    declaredAmbitions: string[]
+}
 interface AmbitionGridProps {
     declaredAmbitions: {
         tycoon: string[],
@@ -14,29 +31,23 @@ interface AmbitionGridProps {
         blightkin?: string[]
     },
     players: any,
-    ambitionProgress: {
-        tycoon: number[][],
-        tyrant: number[][],
-        warlord: number[][],
-        keeper: number[][],
-        empath: number[][],
-    },
+    ambitionProgress: AmbitionProgressType,
     blightkinActive: boolean,
     edenguardActive: boolean
 }
 
 export default function AmbitionGrid({ declaredAmbitions, players, ambitionProgress, blightkinActive, edenguardActive }: AmbitionGridProps) {
     const { getImageSrc: gameImages } = useImageBus("GAME_IMAGES");
-    let AMBITION_DATA = [];
+    let AMBITION_DATA: AmbitionType[] = [];
 
-    console.log(ambitionProgress.tycoon);
-    console.log(JSON.stringify(players));
-    console.log(JSON.stringify(ambitionProgress.tycoon.map(position =>
-        position.map(player => ({
-            color: getColor(players.color[player]),
-            name: players.name[player]
-        }))
-    )));
+    // console.log(ambitionProgress.tycoon);
+    // console.log(JSON.stringify(players));
+    // console.log(JSON.stringify(ambitionProgress.tycoon.map(position =>
+    //     position.map(player => ({
+    //         color: getColor(players.color[player]),
+    //         name: players.name[player]
+    //     }))
+    // )));
 
     ambitionProgress.tycoon.map(position =>
         position.map(player => ({
@@ -51,11 +62,11 @@ export default function AmbitionGrid({ declaredAmbitions, players, ambitionProgr
         podium: ambitionProgress.tycoon.map((_, index) => {
             return [{ color: players.color[index], name: players.name[index] }]
         }), //[[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
-        declaredAmbitions: declaredAmbitions.edenguard
+        declaredAmbitions: declaredAmbitions.edenguard!
     });
 
-    function getPodium(ambition: string) {
-        return ambitionProgress[ambition].map(position =>
+    function getPodium(ambition: keyof AmbitionProgressType) {
+        return ambitionProgress[ambition].map((position: number[]) =>
             position.map(player => ({
                 color: getColor(players.color[player]),
                 name: players.name[player]
@@ -102,7 +113,7 @@ export default function AmbitionGrid({ declaredAmbitions, players, ambitionProgr
         type: AMBITIONS.Blightkin,
         imageSrc: gameImages("blightkin"),
         podium: [[{ color: "bg-player-white", name: "rob" }], [{ color: "bg-player-yellow", name: "matt" }]],
-        declaredAmbitions: declaredAmbitions.blightkin
+        declaredAmbitions: declaredAmbitions.blightkin!
     });
 
 

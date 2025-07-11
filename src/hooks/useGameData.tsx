@@ -7,16 +7,21 @@ import { useTwitchPubSub } from "./useTwitchPubSub";
 
 
 function extractImagesFromGameData(data: GameData) {
+  let fatesImages: string[] = [];
   const appImages: string[] = [];
   const campaignImages: string[] = [];
   const courtImages: string[] = [];
-  const edictImages: string[] = [];
-  const fatesImages: string[] = [];
+
+  let edictImages: string[] = [];
   const gameImages: string[] = [];
   const lawImages: string[] = [];
+  
 
   // APP IMAGES
   appImages.push('background');
+  
+  // FATES IMAGES
+  fatesImages = data.playerData.fate;
 
   // CAMPAIGN IMAGES
   const campaignImagesToAdd = [
@@ -24,9 +29,7 @@ function extractImagesFromGameData(data: GameData) {
     "firstRegent",
     "flagship"
   ]
-
   campaignImagesToAdd.forEach(str => campaignImages.push(str));
-
 
   // COURT IMAGES
   data.playerData.courtCards.forEach(playerCards => {
@@ -35,21 +38,16 @@ function extractImagesFromGameData(data: GameData) {
     });
   });
 
+  // EDICT IMAGES
+  edictImages = data.gameData.edicts;
+
   // data.gameData.courtCards.forEach(courtCard => {
   //   if (courtCard.id) courtImages.push(`court_card_${courtCard.id}`);
   // });
 
 
-  // EDICT IMAGES
-  data.gameData.edicts.forEach(edict => {
-    if (edict) edictImages.push(edict);
-  });
 
 
-  // FATES IMAGES
-  data.playerData.fate.forEach(fate => {
-    if (fate && fate !== null) fatesImages.push(fate);
-  });
 
 
   // GAMES IMAGES
@@ -163,6 +161,8 @@ const mockData: GameData = {
             warlord: [AMBITION_MARKERS.SecondGold, AMBITION_MARKERS.ThirdSilver],
             keeper: [],
             empath: [],
+            edenguard: [],
+            blightkin: [],
         },
         hasBlightkin: false,
         hasEdenguard: false,
@@ -243,6 +243,8 @@ export const initialData: GameData = {
             warlord: [],
             keeper: [],
             empath: [],
+            edenguard: [],
+            blightkin: [],
         },
         courtCards: [],
         edicts: [],
@@ -255,12 +257,14 @@ export function useGameData() {
     const [_, setIsPreloading] = useState(false);
     const { preloadFromData } = useImagePreloader();
 
+
     // Preload images when data changes
     useEffect(() => {
         async function preloadGameImages(gameData: GameData) {
             setIsPreloading(true);
             try {
                 const imagesToPreload = extractImagesFromGameData(gameData);
+                console.log("WERWERWER");
                 await preloadFromData(imagesToPreload);
             } catch (error) {
                 console.error('Failed to preload images:', error);

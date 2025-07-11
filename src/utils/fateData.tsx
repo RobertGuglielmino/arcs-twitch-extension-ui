@@ -63,13 +63,13 @@ const FateNameToID = {
 } as const;
 
 
-export function fateIdToName(name: string) {
+export function fateIdToName(name: keyof typeof FateIDToName) {
     if (!Object.keys(FateIDToName).includes(name)) return "";
     
     return FateIDToName[name];
 }
 
-export function fateNameToId(name: string) {
+export function fateNameToId(name: keyof typeof FateNameToID) {
     if (!Object.keys(FateNameToID).includes(name)) return "";
     
     return FateNameToID[name];

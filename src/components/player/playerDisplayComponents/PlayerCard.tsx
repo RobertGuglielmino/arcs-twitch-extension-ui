@@ -9,10 +9,11 @@ import FlagshipBoardDisplay from "../playerBoard/FlagshipBoardDisplay";
 import PlayerBoardDisplay from "../playerBoard/PlayerBoardDisplay";
 import { getColor } from "@/utils/getColor";
 import { getTextColor } from "@/utils/getTextColor";
-import { GAME_IMAGES } from "@/assets/game";
 import { useImageBus } from "@/stores/imageStore";
 import { fateIdToName } from "@/utils/fateData";
 import type { RESOURCES } from "@robertguglielmino/arcs-types";
+import { getFlagshipConfig } from "@/utils/getFlagshipConfig";
+import { getPlayerResourceConfig } from "@/utils/getPlayerResourceConfig";
 
 type FlagshipSpot = "city" | "starport" | "";
 interface PlayerCardProps {
@@ -32,19 +33,19 @@ interface PlayerCardProps {
     titles?: string[],
 }
 
-
-
 export default function PlayerCard({ playerName, fate, color, tyrant, warlord, resources, cities, outrage, objectiveScore, power, courtCards, hasFlagship, flagshipBoard = [], titles = [] }: PlayerCardProps) {
     const { getImageSrc: getGameImage } = useImageBus('GAME_IMAGES');
     const { getImageSrc: getCampaignImage } = useImageBus('CAMPAIGN_IMAGES');
     const { getImageSrc: getCourtImage } = useImageBus('COURT_IMAGES');
     const { getImageSrc: getAppImage } = useImageBus('APP_IMAGES');
     const { getImageSrc: getFateImages } = useImageBus('FATES_IMAGES');
+
     const courtCardsParsed = courtCards.map(card => getCourtImage(card));
     const bgColor = getColor(color);
     const textColor = getTextColor(color);
-
-    
+    const FLAGSHIP_CONFIG = getFlagshipConfig(color, getGameImage);
+    const CITY_CONFIG = getFlagshipConfig(color, getGameImage);
+    const RESOURCE_CONFIG = getPlayerResourceConfig(getGameImage);
 
 
     return (
@@ -63,7 +64,7 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
                                     {playerName}
                                 </div>
                                 <div className={`text-xs rounded h-auto flex flex-col items-center justify-center w-auto mx-1 text-white `}>
-                                   {fateIdToName(fate)}
+                                   {fateIdToName(fate as keyof typeof fateIdToName)}
                                 </div>
                             </div>
                         </BackgroundImage>
@@ -73,7 +74,7 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
                         <VPIcon power={power} />
                     </div>
                     <div className="flex flex-col shrink justify-around m-1">
-                        <PlayerHoverIcon imageSrc={GAME_IMAGES.material} >
+                        <PlayerHoverIcon imageSrc={getGameImage('material')} >
                             <PlayerBoardDisplay 
                                 playerBoard={getGameImage('board')} 
                                 resources={resources} 
@@ -81,11 +82,13 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
                                 outrage={outrage} 
                                 trophies={warlord} 
                                 captives={tyrant} 
-                                color={color} 
+                                color={color}
+                                cityConfig={CITY_CONFIG}
+                                resourceConfig={RESOURCE_CONFIG}
                             />
                         </PlayerHoverIcon>
                         {hasFlagship && <PlayerHoverIcon imageSrc={getCampaignImage("flagship")}>
-                            <FlagshipBoardDisplay flagshipBoard={flagshipBoard} color={color} />
+                            <FlagshipBoardDisplay imageSrc={getCampaignImage("flagshipBoard")} flagshipBoard={flagshipBoard} config={FLAGSHIP_CONFIG} />
                         </PlayerHoverIcon>}
                         <PlayerHoverIcon imageSrc={getGameImage("cardBackSideways")} >
                             <HoverGrid cards={courtCardsParsed} />
