@@ -164,8 +164,8 @@ const mockData: GameData = {
             edenguard: [],
             blightkin: [],
         },
-        hasBlightkin: false,
-        hasEdenguard: false,
+        hasBlightkin: true,
+        hasEdenguard: true,
         ambitionPodium: {
             tycoon: [[1], [2]],
             tyrant: [[0], []],

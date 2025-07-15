@@ -33,8 +33,8 @@ import keeper from './ambitions/keeper.webp';
 import tycoon from './ambitions/tycoon.webp';
 import tyrant from './ambitions/tyrant.webp';
 import warlord from './ambitions/warlord.webp';
-import blightkin from './ambitions/blightkin.jpg';
-import edenguard from './ambitions/edenguard.jpg';
+import blightkin from './ambitions/blightkin.webp';
+import edenguard from './ambitions/edenguard.webp';
 
 // Ambition marker images
 import firstGold from './ambition-markers/firstGold.webp';
