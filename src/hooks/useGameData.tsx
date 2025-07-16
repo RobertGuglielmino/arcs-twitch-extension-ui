@@ -116,7 +116,7 @@ const mockData: GameData = {
         name: ["ROB", "MATT", "HUNTER", "DARRELL"],
         fate: [Fates.Steward, Fates.Admiral, Fates.Pathfinder, Fates.Conspirator],
         color: ["white", "blue", "red", "yellow"],
-        power: [11, 2, 3, 411],
+        power: [11, 2, 3, 40],
         objectiveProgress: [1, 21, 3, 4],
         resources: [
             [RESOURCES.Fuel, RESOURCES.Empty, RESOURCES.Fuel, RESOURCES.Empty, RESOURCES.Fuel, RESOURCES.Empty],
@@ -148,9 +148,9 @@ const mockData: GameData = {
         ],
         titles: [
             [TITLES.FirstRegent, TITLES.LordCluster1],
-            [TITLES.FirstRegent, TITLES.CommonwealthMember, TITLES.JudgesChosen],
-            [TITLES.FirstRegent, TITLES.CommonwealthMember, TITLES.JudgesChosen],
-            [TITLES.FirstRegent, TITLES.CommonwealthMember, TITLES.JudgesChosen]
+            [TITLES.ImperialRegent, TITLES.CommonwealthMember],
+            [TITLES.Outlaw, TITLES.CommonwealthFounder],
+            [TITLES.Outlaw, TITLES.JudgesChosen]
         ]
     },
     gameData: {
@@ -164,8 +164,8 @@ const mockData: GameData = {
             edenguard: [],
             blightkin: [],
         },
-        hasBlightkin: true,
-        hasEdenguard: true,
+        hasBlightkin: false,
+        hasEdenguard: false,
         ambitionPodium: {
             tycoon: [[1], [2]],
             tyrant: [[0], []],

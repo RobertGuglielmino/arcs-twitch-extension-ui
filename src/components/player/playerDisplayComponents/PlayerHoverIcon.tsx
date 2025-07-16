@@ -18,7 +18,7 @@ export default function PlayerHoverIcon({ imageSrc, children }: PlayerHoverIconP
     };
 
     return (
-        <div className="shrink max-w-10 max-h-full">
+        <div className="shrink max-w-9 max-h-full">
             <div
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}

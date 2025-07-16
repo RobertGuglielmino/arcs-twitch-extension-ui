@@ -11,6 +11,6 @@ export function getPlayerCityConfig(color: Color, imgSrc: (s: string) => string)
             { top: 22.5, left: 33 }
         ],
         size: { width: 9 },
-        image: getColorImages(color, imgSrc)
+        image: getColorImages(color, imgSrc).city
     };
 }

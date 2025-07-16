@@ -14,6 +14,7 @@ import { fateIdToName } from "@/utils/fateData";
 import type { RESOURCES } from "@robertguglielmino/arcs-types";
 import { getFlagshipConfig } from "@/utils/getFlagshipConfig";
 import { getPlayerResourceConfig } from "@/utils/getPlayerResourceConfig";
+import { getPlayerCityConfig } from "@/utils/getPlayerCityConfig";
 
 type FlagshipSpot = "city" | "starport" | "";
 interface PlayerCardProps {
@@ -28,7 +29,7 @@ interface PlayerCardProps {
     objectiveScore: number,
     power: number,
     courtCards: string[],
-    hasFlagship: boolean, 
+    hasFlagship: boolean,
     flagshipBoard?: FlagshipSpot[],
     titles?: string[],
 }
@@ -44,59 +45,71 @@ export default function PlayerCard({ playerName, fate, color, tyrant, warlord, r
     const bgColor = getColor(color);
     const textColor = getTextColor(color);
     const FLAGSHIP_CONFIG = getFlagshipConfig(color, getGameImage);
-    const CITY_CONFIG = getFlagshipConfig(color, getGameImage);
+    const CITY_CONFIG = getPlayerCityConfig(color, getGameImage);
     const RESOURCE_CONFIG = getPlayerResourceConfig(getGameImage);
 
 
     return (
-        <div className={`flex flex-col justify-center w-full max-w-61`}>
+        <div className={`flex flex-col justify-center w-full max-w-44`}>
             <BackgroundImage
                 imageSrc={getAppImage("background")}
                 imageClassName="object-cover">
-                <div className={`flex flex-row h-full justify-between font-header top-0 gap-1`}>
-                    <div className="w-30 max-w-30">
+                <div className={`flex flex-row h-full justify-between font-header top-0`}>
+                    <div className="w-32 max-w-32">
                         <BackgroundImage
                             imageSrc={getFateImages(fate)}
                             imageClassName="object-cover object-top "
                             className="overflow-y-hidden h-full">
-                            <div className="flex flex-col items-center h-full justify-end pb-2">
-                                <div className={`text-xs rounded h-auto flex flex-col items-center justify-center w-auto p-1 ${bgColor}`}>
-                                    {playerName}
+                            <div className="flex flex-col justify-between h-full">
+                                <div className="flex flex-row justify-end w-auto">
+                                    <div className={`flex flex-row justify-end h-auto rounded-bl px-1 ${bgColor}`}>
+                                        <VPIcon power={power} />
+                                    </div>
                                 </div>
-                                <div className={`text-xs rounded h-auto flex flex-col items-center justify-center w-auto mx-1 text-white `}>
-                                   {fateIdToName(fate as keyof typeof fateIdToName)}
+                                <div className="flex flex-col items-center h-auto pb-1">
+                                    <div className={`text-xs rounded-xs h-auto flex flex-col items-center justify-center w-auto px-1 mx-1 text-white bg-black`}>
+                                        {fateIdToName(fate as keyof typeof fateIdToName)}
+                                    </div>
+                                    <div className={`text-xs rounded-xs h-auto flex flex-col items-center justify-center w-auto px-1 ${bgColor}`}>
+                                        {playerName}
+                                    </div>
                                 </div>
                             </div>
                         </BackgroundImage>
                     </div>
-                    <div className={` ${textColor} flex flex-col flex-shrink flex-wrap justify-evenly content-center w-full max-w-15 `}>
-                        <ObjectiveIcon objectiveScore={objectiveScore} />
-                        <VPIcon power={power} />
-                    </div>
-                    <div className="flex flex-col shrink justify-around m-1">
+                    <div className={` ${textColor} flex flex-col flex-shrink flex-wrap justify-evenly content-center items-center w-full max-w-12 my-1`}>
                         <PlayerHoverIcon imageSrc={getGameImage('material')} >
-                            <PlayerBoardDisplay 
-                                playerBoard={getGameImage('board')} 
-                                resources={resources} 
-                                cities={cities} 
-                                outrage={outrage} 
-                                trophies={warlord} 
-                                captives={tyrant} 
+                            <PlayerBoardDisplay
+                                playerBoard={getGameImage('board')}
+                                resources={resources}
+                                cities={cities}
+                                outrage={outrage}
+                                trophies={warlord}
+                                captives={tyrant}
                                 color={color}
                                 cityConfig={CITY_CONFIG}
                                 resourceConfig={RESOURCE_CONFIG}
                             />
                         </PlayerHoverIcon>
-                        {hasFlagship && <PlayerHoverIcon imageSrc={getCampaignImage("flagship")}>
-                            <FlagshipBoardDisplay imageSrc={getCampaignImage("flagshipBoard")} flagshipBoard={flagshipBoard} config={FLAGSHIP_CONFIG} />
-                        </PlayerHoverIcon>}
+
+                        {hasFlagship ?
+                            <PlayerHoverIcon imageSrc={getCampaignImage("flagship")}>
+                                <FlagshipBoardDisplay imageSrc={getCampaignImage("flagshipBoard")} flagshipBoard={flagshipBoard} config={FLAGSHIP_CONFIG} />
+                            </PlayerHoverIcon> :
+                            
+                            <div className="shrink max-w-9 max-h-full font-body aspect-square">
+                                <img src={getCampaignImage("flagship")} className="w-full h-full object-contain grayscale-50 opacity-50" />
+                            </div>}
+
                         <PlayerHoverIcon imageSrc={getGameImage("cardBackSideways")} >
                             <HoverGrid cards={courtCardsParsed} />
                         </PlayerHoverIcon>
+
+                        <ObjectiveIcon objectiveScore={objectiveScore} />
                     </div>
                 </div>
             </BackgroundImage>
-            <div className="flex flex-wrap gap-1 pl-1 py-1 w-full text-center">
+            <div className="flex flex-wrap gap-1 pl-1 py-1 w-full text-center overflow-x">
                 {titles.map(title => <PlayerTitleChip key={title} title={title} />)}
             </div>
         </div>
